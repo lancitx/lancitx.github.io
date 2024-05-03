@@ -1,0 +1,932 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>LinuxC%20基础篇 | lancit の blog</title><meta name="author" content="lancit"><meta name="copyright" content="lancit"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Linux C Linux系统是基于C语言的一种类UNIX系统，其发布遵循GPL协议。 Linux内核是系统的核心程序文件，其主要包括：中断服务程序、调度程序、内存管理程序、网络和进程间通讯等程序构成。 Linux保留了UNIX的大多数特点：支持动态加载内核模块、支持对称多处理机制、不区分线程和其他一般进程。  1. C语言基础1.1 数据类型C语言的数据类型可以分为基本类型、构造类型、指针类型和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LinuxC%20基础篇">
+<meta property="og:url" content="http://example.com/2024/04/20/LinuxC%20%E5%9F%BA%E7%A1%80%E7%AF%87/index.html">
+<meta property="og:site_name" content="lancit の blog">
+<meta property="og:description" content="Linux C Linux系统是基于C语言的一种类UNIX系统，其发布遵循GPL协议。 Linux内核是系统的核心程序文件，其主要包括：中断服务程序、调度程序、内存管理程序、网络和进程间通讯等程序构成。 Linux保留了UNIX的大多数特点：支持动态加载内核模块、支持对称多处理机制、不区分线程和其他一般进程。  1. C语言基础1.1 数据类型C语言的数据类型可以分为基本类型、构造类型、指针类型和">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/linuxc.png">
+<meta property="article:published_time" content="2024-04-20T12:10:40.000Z">
+<meta property="article:modified_time" content="2024-05-03T14:52:50.458Z">
+<meta property="article:author" content="lancit">
+<meta property="article:tag" content="linuxC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/linuxc.png"><link rel="shortcut icon" href="/img/favicon.svg"><link rel="canonical" href="http://example.com/2024/04/20/LinuxC%20%E5%9F%BA%E7%A1%80%E7%AF%87/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'LinuxC%20基础篇',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-03 22:52:50'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="wizard-scene"><div class="wizard-objects"><div class="wizard-square"></div><div class="wizard-circle"></div><div class="wizard-triangle"></div></div><div class="wizard"><div class="wizard-body"></div><div class="wizard-right-arm"><div class="wizard-right-hand"></div></div><div class="wizard-left-arm"><div class="wizard-left-hand"></div></div><div class="wizard-head"><div class="wizard-beard"></div><div class="wizard-face"><div class="wizard-adds"></div></div><div class="wizard-hat"><div class="wizard-hat-of-the-hat"></div><div class="wizard-four-point-star --first"></div><div class="wizard-four-point-star --second"></div><div class="wizard-four-point-star --third"></div></div></div></div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/theme_img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-folder-open"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/linux/"><i class="fa-fw far fa-sad-cry"></i><span> LinuxC</span></a></li><li><a class="site-page child" href="/stm32/"><i class="fa-fw far fa-sad-tear"></i><span> STM32</span></a></li><li><a class="site-page child" href="/Hcircuit/"><i class="fa-fw far fa-meh"></i><span> Hcircuit</span></a></li><li><a class="site-page child" href="/other/"><i class="fa-fw far fa-kiss-wink-heart"></i><span> Other</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw far fa-user"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="lancit の blog"><img class="site-icon" src="/img/nav.svg"/><span class="site-name">lancit の blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-folder-open"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/linux/"><i class="fa-fw far fa-sad-cry"></i><span> LinuxC</span></a></li><li><a class="site-page child" href="/stm32/"><i class="fa-fw far fa-sad-tear"></i><span> STM32</span></a></li><li><a class="site-page child" href="/Hcircuit/"><i class="fa-fw far fa-meh"></i><span> Hcircuit</span></a></li><li><a class="site-page child" href="/other/"><i class="fa-fw far fa-kiss-wink-heart"></i><span> Other</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw far fa-user"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">LinuxC%20基础篇</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-20T12:10:40.000Z" title="发表于 2024-04-20 20:10:40">2024-04-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-03T14:52:50.458Z" title="更新于 2024-05-03 22:52:50">2024-05-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/linux/">linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="LinuxC%20基础篇"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="Linux-C"><a href="#Linux-C" class="headerlink" title="Linux C"></a>Linux C</h1><ul>
+<li>Linux系统是基于C语言的一种类UNIX系统，其发布遵循<strong>GPL协议</strong>。</li>
+<li>Linux内核是系统的核心程序文件，其主要包括：<strong>中断服务程序、调度程序、内存管理程序、网络和进程间通讯</strong>等程序构成。</li>
+<li>Linux保留了UNIX的大多数特点：<strong>支持动态加载内核模块、支持对称多处理机制、不区分线程和其他一般进程</strong>。</li>
+</ul>
+<h2 id="1-C语言基础"><a href="#1-C语言基础" class="headerlink" title="1. C语言基础"></a>1. C语言基础</h2><h3 id="1-1-数据类型"><a href="#1-1-数据类型" class="headerlink" title="1.1 数据类型"></a>1.1 数据类型</h3><p>C语言的数据类型可以分为<strong>基本类型、构造类型、指针类型和空类型</strong>。</p>
+<table>
+<thead>
+<tr>
+<th align="center">基本类型</th>
+<th align="center">特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">整型</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center">实型</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center">字符类型</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center"><strong>枚举类型</strong></td>
+<td align="center">某变量<strong>仅有</strong>几种可能值，可使用关键字<strong>enum</strong>声明。<br />枚举常量的值可以用于比较。</td>
+</tr>
+</tbody></table>
+<p>对于枚举类型，可以理解为：<strong>将一些固定的值起别名，并将其存放于某变量</strong>。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//使用枚举类型保存寄存器的值</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">IE</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    EX0_ENABLE=<span class="number">0x01</span>,</span><br><span class="line">    EXT_ENABLE=<span class="number">0x02</span>,</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用枚举类型对数组各元素加以区分，其值依次加一：0 1 2...</span></span><br><span class="line"><span class="keyword">enum</span> WEEK</span><br><span class="line">&#123;</span><br><span class="line">    MON,</span><br><span class="line">    TUE,</span><br><span class="line">    WED,</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//也可以结合typedef起别名，用于定义枚举变量</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>对于构造类型：</p>
+<table>
+<thead>
+<tr>
+<th align="center">构造类型</th>
+<th align="center">特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">数组类型</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center">结构体类型</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center"><strong>共用体类型</strong></td>
+<td align="center">与结构体类型类似，使用<strong>union</strong>关键字开头。</td>
+</tr>
+</tbody></table>
+<p>所谓的共用体类型就是：<strong>几个不同变量共用同一段内存的结构类型</strong>，成员的起始地址相同，故共用体的内存长度为其中<strong>最长成员长度</strong>。</p>
+<ul>
+<li><p>最后一次赋值有效；</p>
+</li>
+<li><p>不能引用共用体变量，而只能引用共用体变量中的成员；</p>
+</li>
+<li><p>不能对共用体变量名赋值，也不能企图引用变量名来得到一个值；</p>
+</li>
+<li><p>C99允许用共用体变量作为函数参数；</p>
+</li>
+<li><p>共用体类型可以出现在结构体类型定义中，也可以定义共用体数组。反之，结构体也可以出现在共用体类型定义中，数组也可以作为共用体的成员。</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">Data</span>&#123;</span></span><br><span class="line">	<span class="type">int</span> i;</span><br><span class="line">	<span class="type">char</span>* ch;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="type">void</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">union</span> <span class="title">Data</span> <span class="title">data</span>;</span></span><br><span class="line">	data.i = <span class="number">1</span>;</span><br><span class="line">	data.f = <span class="number">1.2</span>;</span><br><span class="line">	data.d = <span class="number">1.23</span>;	<span class="comment">//只能引用共用体变量中的成员，且同一时间只存在一个变量。</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>对于指针类型，</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> data,*point;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;data);</span><br><span class="line">point=&amp;data;</span><br><span class="line">*point--;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,point);</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-运算符"><a href="#1-2-运算符" class="headerlink" title="1.2 运算符"></a>1.2 运算符</h3><table>
+<thead>
+<tr>
+<th align="center">运算符</th>
+<th align="center">特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">+、-、*、&#x2F;、%、++、–、&#x3D;</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center">&lt;、&gt;、&gt;&#x3D;、&lt;&#x3D;、!&#x3D;</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center">&amp;&amp;、||、!</td>
+<td align="center">与或非</td>
+</tr>
+<tr>
+<td align="center">&amp;、|、^、~、&lt;&lt;、&gt;&gt;</td>
+<td align="center">按位：与、或、异或、取反、左移、右移</td>
+</tr>
+</tbody></table>
+<p>其中，有些值得注意的细节：</p>
+<ul>
+<li>对整数中某些位进行位操作时，可使用位操作运算符，</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//使用掩码取出8~15位，并将其右移得到值</span></span><br><span class="line"><span class="type">unsigned</span> <span class="type">int</span> a, b, mask = <span class="number">0x0000ff00</span>;</span><br><span class="line">a = <span class="number">0x12345678</span>;</span><br><span class="line">b = (a &amp; mask) &gt;&gt; <span class="number">8</span>; <span class="comment">/* 0x00000056 */</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>a += 1</code>相当于<code>a = a + 1</code>，但是这种复合运算，只进行一次运算。</li>
+<li>任何数与自己做异或，结果为0。</li>
+<li><code>表达式1 ? 表达式2 : 表达式3</code>，三目运算符。</li>
+<li>sizeof运算符返回类型字节数，typedef类型声明符。</li>
+<li>**结构体取成员“.”、指向结构体的指针取成员-&gt;**。</li>
+</ul>
+<h2 id="2-内存管理"><a href="#2-内存管理" class="headerlink" title="2. 内存管理"></a>2. 内存管理</h2><p>根据内存分配方式的不同，可将其分为：<strong>动态内存和静态内存</strong>。</p>
+<p>对于<strong>动态内存</strong>，程序员自行控制内存的分配和释放。而所谓的<strong>静态内存</strong>是由编译器分配的内存，其在编译时完成，不占用CPU资源，变量的释放和分配系统自行完成。</p>
+<p>对于其区别：</p>
+<ul>
+<li>静态内存的使用不占用CPU资源，而动态内存是在程序运行时完成的，因此占用CPU资源。</li>
+<li>静态内存是在<strong>栈</strong>上分配的，而动态内存是在<strong>堆</strong>上完成的。</li>
+<li>动态内存的使用需要指针和引用数据类型的支持，而静态内存不用。</li>
+<li>静态内存：计划分配，动态内存：按需分配。</li>
+</ul>
+<h3 id="2-1-内存操作"><a href="#2-1-内存操作" class="headerlink" title="2.1 内存操作"></a>2.1 内存操作</h3><p>计算机内存空间是通过指针实现访问的，对于正确的分配动态内存空间，</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">原型</th>
+<th align="center">特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>malloc()</strong></td>
+<td align="center">void *malloc(unsigned int size)</td>
+<td align="center">分配长度为size字节的内存块</td>
+</tr>
+<tr>
+<td align="center"><strong>calloc()</strong></td>
+<td align="center">void *calloc(unsigned n,unsigned size)</td>
+<td align="center">分配n个长度为size字节的内存块</td>
+</tr>
+<tr>
+<td align="center"><strong>realloc()</strong></td>
+<td align="center">void *raelloc(void *mem_address,unsigned int newsize)</td>
+<td align="center">调整mem_address所指向内存区域大小为newsize长度</td>
+</tr>
+<tr>
+<td align="center"><strong>memset()</strong></td>
+<td align="center">void *memset(void *s,char ch,unsigned n)</td>
+<td align="center">设置字符串s中所有字节为ch，s数组大小为n</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>分配成功将返回分配内存的指针，否则返回NULL。</p>
+</li>
+<li><p>需要使用**free()**函数释放内存空间。</p>
+</li>
+<li><p>特别的，如果在<strong>realloc()<strong>函数中</strong>newsize</strong>大小为0，则相当于**free()**函数，释放内存空间。</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">char</span> *p;</span><br><span class="line">    p=(<span class="type">char</span> *)<span class="built_in">malloc</span>(<span class="number">100</span>);	<span class="comment">//对指针分配100个字节</span></span><br><span class="line">    <span class="keyword">if</span>(p)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Memory allocated at: %x&quot;</span>,p);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Not enough.&quot;</span>);</span><br><span class="line">    getchar();</span><br><span class="line">    </span><br><span class="line">    p=(<span class="type">char</span> *)<span class="built_in">realloc</span>(p,<span class="number">256</span>);	<span class="comment">//调整p内存空间从100字节到256字节</span></span><br><span class="line">    <span class="keyword">if</span>(p)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Memory allocated at: %x&quot;</span>,p);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Not enough.&quot;</span>);</span><br><span class="line">    <span class="built_in">free</span>(p);	<span class="comment">//释放空间</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-链表"><a href="#2-2-链表" class="headerlink" title="2.2 链表"></a>2.2 链表</h3><p>假设使用动态内存分配的方式，实现保存多名学生的学号、年龄以及成绩，直到输入为0结束。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//见附录算法1.2</span></span><br></pre></td></tr></table></figure>
+
+<p>值得注意的是：<strong>scanf（）</strong>函数，在<strong>格式字符串中存在非格式控制字符时</strong>，必须严格符合格式要求。</p>
+<ul>
+<li>例如，<code>scanf(&quot;%d,%d&quot;,&amp;a,&amp;b)</code>中，输入必须为<code>1,2</code>，否则将会导致读取异常。</li>
+</ul>
+<h2 id="3-Vim和Emacs"><a href="#3-Vim和Emacs" class="headerlink" title="3. Vim和Emacs"></a>3. Vim和Emacs</h2><h3 id="3-1-VIM"><a href="#3-1-VIM" class="headerlink" title="3.1 VIM"></a>3.1 VIM</h3><p>VIM作为Linux系统下自带的基本编辑器，具有彩色和高亮等特性。对于VIM的使用：</p>
+<ul>
+<li>终端输入<strong>vim</strong>，进入编辑器中。</li>
+<li>退出<strong>vim</strong>，需要长按<strong>ESC</strong>键，输入<code>:</code>，再输入<code>q</code>，按下<strong>ENTER</strong>，即可退出。</li>
+</ul>
+<p>同时VIM具有三种模式：<strong>命令模式、编辑模式、底行模式</strong>。</p>
+<img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/LniuxCimage-20240219114353799.png" alt="image-20240219114353799" style="zoom: 80%;" />
+
+<p>对于VIM<strong>命令行模式</strong>：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">复制：</span><br><span class="line">y    在使用v模式选定了某一块的时候，复制选定块到缓冲区用；</span><br><span class="line">yy   复制整行（nyy或者yny ，复制n行，n为数字）；</span><br><span class="line">y^   复制当前到行头的内容；</span><br><span class="line">y$   复制当前到行尾的内容；</span><br><span class="line">yw   复制一个word （nyw或者ynw，复制n个word，n为数字）；</span><br><span class="line">yG   复制至档尾（nyG或者ynG，复制到第n行，例如<span class="number">1</span>yG或者y1G，复制到档尾） </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">剪切：</span><br><span class="line">d    剪切选定块到缓冲区；</span><br><span class="line">dd   剪切整行</span><br><span class="line">d^   剪切至行首</span><br><span class="line">d$   剪切至行尾</span><br><span class="line">dw   剪切一个word</span><br><span class="line">dG   剪切至档尾 </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">粘贴：</span><br><span class="line">p    小写p代表贴至游标后（下）</span><br><span class="line">P    大写P代表贴至游标前（上）</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">常用：</span><br><span class="line">u    撤销</span><br><span class="line">.	 重复    </span><br></pre></td></tr></table></figure>
+
+
+
+<p>而对于VIM的<strong>底行模式</strong>：</p>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">q wq x wq!</td>
+<td align="center">退出 先保存再退出 强制保存并退出</td>
+</tr>
+<tr>
+<td align="center">quit</td>
+<td align="center">不保存退出</td>
+</tr>
+<tr>
+<td align="center">w w filename</td>
+<td align="center">保存为filename名的文件</td>
+</tr>
+<tr>
+<td align="center">set nu set nonu</td>
+<td align="center">显示行号 不显示行号</td>
+</tr>
+<tr>
+<td align="center">&#x2F;str ?str</td>
+<td align="center">正、反向搜索str 按n继续查找</td>
+</tr>
+<tr>
+<td align="center">recover</td>
+<td align="center">恢复文件</td>
+</tr>
+<tr>
+<td align="center">ce ri le</td>
+<td align="center">本行内容居中、靠右、靠左</td>
+</tr>
+</tbody></table>
+<h3 id="3-2-Emacs"><a href="#3-2-Emacs" class="headerlink" title="3.2 Emacs"></a>3.2 Emacs</h3><ul>
+<li></li>
+</ul>
+<h2 id="4-GCC编译器"><a href="#4-GCC编译器" class="headerlink" title="4. GCC编译器"></a>4. GCC编译器</h2><p><strong>GCC</strong>是GNU C Compiler的缩写，由于技术的发展，现在已经可以编译<strong>C、C++、Ada、Object C	、Java</strong>等语言了。故现在又称之为GNU Compiler Collection，具有交叉编译的功能，即可以在一个平台上编译另一个平台的代码。</p>
+<h3 id="4-1-GCC编译"><a href="#4-1-GCC编译" class="headerlink" title="4.1 GCC编译"></a>4.1 GCC编译</h3><p><strong>gcc</strong>编译的基本用法：<code>gcc [options] [filenames]</code></p>
+<ul>
+<li><code>-o output filename</code>，确定输出文件名为outputfilename，这个名称不能和源文件同名。</li>
+<li><code>-c</code>，只编译，不链接成为可执行文件，只生成由C文件生成的目标文件，通常用于不包含主程序的<strong>子程序文件</strong>。</li>
+<li><code>-g</code>，产生符号调试工具（<strong>GDB</strong>）必要的符号资讯，通常用于调试。</li>
+<li><code>-O</code>，对程序进行优化编译、链接，可提高执行效率。</li>
+<li><code>O2</code>，比前者更好的优化，但编译过程变慢。</li>
+<li><code>-pedantic</code>，能够帮助开发者找出不符合<strong>ANSI&#x2F;ISO C</strong>标准的代码，但不是全部。</li>
+<li><code>-Wall</code>，<strong>该指令能够使GCC产生尽可能多的警告信息</strong>。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta"># gcc -Wall test.c -o test</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>-Werror</code>，该指令将<strong>所有警告当作是错误处理</strong>，在使用make工具时，能够很好的在产生警告的地方停止。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta"># gcc -Wall -Werror test.c -o test</span></span><br></pre></td></tr></table></figure>
+
+<p>建议在使用gcc指令时与<strong>Werror</strong>连用。</p>
+<p>GCC编译程序时，可以细分为：<strong>预处理、编译、汇编、链接</strong>。</p>
+<table>
+<thead>
+<tr>
+<th align="center">步骤</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">预处理</td>
+<td align="center">C预处理器CPP，主要用于解释宏定义、处理包含头文件。</td>
+</tr>
+<tr>
+<td align="center">编译</td>
+<td align="center">将源代码处理为.o格式的目标文件。</td>
+</tr>
+<tr>
+<td align="center">汇编</td>
+<td align="center">在使用gcc时，产生汇编代码，处理这些汇编代码就需要汇编器，从而使其成为目标文件。</td>
+</tr>
+<tr>
+<td align="center">链接</td>
+<td align="center">将项目的多个模块组合起来，结合相应的函数库，产生目标文件。</td>
+</tr>
+</tbody></table>
+<p>此外，除去GCC编译器外，还有一些其他的编译器：</p>
+<ul>
+<li><code>g++</code>，其使用的选项一样，但是是针对C++进行编译，保存其扩展名一般为：**.cxx** 。</li>
+<li><code>EGCS</code>：gcc的未来模样，但是现在已经gg了。</li>
+<li>F2C、P2C：代码转换器。</li>
+</ul>
+<h3 id="4-2-GDB调试"><a href="#4-2-GDB调试" class="headerlink" title="4.2 GDB调试"></a>4.2 GDB调试</h3><h4 id="4-2-1-gdb预处理"><a href="#4-2-1-gdb预处理" class="headerlink" title="4.2.1 gdb预处理"></a>4.2.1 gdb预处理</h4><p>GDB工具是通过<strong>bash</strong>命令行上实现的，要想使用GDB，<strong>必须在使用gcc编译时，附加上调试指令，使得生成文件包含调试信息</strong>。</p>
+<p><strong>调试符号</strong>：<strong>调试符号是将源代码与可执3行文件相联系的桥梁</strong>，可用作源代码级的<strong>条好似、栈回溯、按名称显示变量</strong>等。</p>
+<p>gcc调试指令：</p>
+<ul>
+<li><code>-g</code>，可以在g后附加数字<strong>1、2、3</strong>来指定加入调试信息的多少，默认<code>-g2</code>。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">代号</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">不含局部变量和与行号相关的调试信息，只能用来<strong>回溯跟踪、堆栈转储</strong>。</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">包含拓展的符号表、行号、局部变量或外部变量信息。</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">在1、2的基础上，包含源代码中的<strong>定义的宏</strong>。</td>
+</tr>
+</tbody></table>
+<p>其中，<strong>回溯跟踪</strong>：监视程序在运行过程中的函数调用历史。<strong>堆栈转储</strong>：以十六进制保存程序执行环境的方法。</p>
+<ul>
+<li><code>-ggdb</code>，在生成的二进制代码中包含GDB专用的调试信息。</li>
+</ul>
+<p>如果在使用<strong>gcc</strong>编译时，未附加调试指令，再使用<code>gdb filename</code>，则有：</p>
+<img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240220164239309.png" alt="image-20240220164239309" style="zoom: 80%;" />
+
+<p>而在编译时，使用了调试指令，则再用<code>gdb filename</code>，此时已经显示读取到调试符号，再键入<code>run</code>指令，则有：</p>
+<img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240220164956729.png" alt="image-20240220164956729" style="zoom:80%;" />
+
+<p>显然，此时程序错误为段错误（<code>scanf(&quot;%d&quot;,input);</code>），再使用<strong>回溯跟踪</strong><code>backtrace</code>（查看函数调用历史）。</p>
+<img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240220165513388.png" alt="image-20240220165513388" style="zoom:80%;" />
+
+<p>从<code>#2</code>错误可知，该问题出在crash.c文件中的第6句。</p>
+<p>此外，使用GDB打开带有调试信息的文件时，还可以先进入gdb环境，再使用<code>file 可执行文件名</code>。</p>
+<h4 id="4-2-2-gdb调试"><a href="#4-2-2-gdb调试" class="headerlink" title="4.2.2 gdb调试"></a>4.2.2 gdb调试</h4><p>GDB还支持：<strong>单步跟踪程序、检查内存变量、设置断点等</strong>。在<strong>gdb</strong>环境中：</p>
+<p><strong>单步跟踪</strong>：</p>
+<ul>
+<li><code>break n</code>，在<strong>第n行</strong>设置断点。<code>break 函数名</code>，进入<strong>指定函数时停止</strong>。<code>break ... if 条件</code>，符合条件且运行到指定位置停止。</li>
+<li><code>enable</code>，可以<strong>恢复暂时不起作用的断点</strong>，还可以恢复多个断点，<strong>使用空格断开</strong>。</li>
+<li><code>disable</code>，<strong>设置断点失效</strong>，例如，程序在断点处停下，可以使用disable<strong>失效下一断点</strong>，再用continue继续执行。</li>
+<li><code>delete</code>，<code>clear</code>，<strong>删除断点</strong>。clear清除断点需要标明<strong>行号</strong>，delete则需要标明<strong>编号</strong>。</li>
+<li><code>next</code>，<strong>单步执行程序语句</strong>。</li>
+<li><code>step</code>，进入<strong>子函数</strong>，<strong>step</strong>可以使用<strong>快捷键</strong><code>s</code>代替，单步执行每一条语句。<strong>step与next的区别在于next将子函数视为一步</strong>。</li>
+<li><code>continue</code>，继续执行程序。</li>
+<li><code>quit</code>，退出。</li>
+</ul>
+<p><strong>检查内存变量</strong>：</p>
+<ul>
+<li><p><code>print 变量/表达式</code>，可以使用该指令<strong>输出变量&#x2F;表达式值</strong>。</p>
+</li>
+<li><p><code>print $</code>，表示给定序号的前一个序号，<code>$</code>表示这是第几次使用print指令。还有<code>print $$</code>。</p>
+</li>
+<li><p><code>print vari=value</code>，<strong>print指令还可以给变量赋值</strong>。</p>
+</li>
+<li><p><code>print 开始表达式@连续空间大小</code>，用于打印连续空间的内容，例如，<code>print array[3]@2</code>，打印从数组4开始的两个内容。</p>
+</li>
+<li><p><code>display</code>，与<code>print</code>不同的是，<strong>每当运行到断点处时，都会显示表达式的值</strong>，适合在循环中观察变量的值。</p>
+</li>
+<li><p><code>disable display 序号, enable display 序号, delete display 序号，undisplay 序号</code>，<strong>使能&#x2F;失能、取消、取消显示</strong>。</p>
+</li>
+<li><p><code>whatis，ptype</code>，<strong>whatis只显示数据类型，而ptype还可以给出类型的定义</strong>。</p>
+</li>
+<li><p><code>set</code>，<strong>可用于修改大循环变量为需要的值</strong>，例如，<code>set variable i=4</code>。</p>
+</li>
+<li><p><code>x/&lt;n/f/u&gt; &lt;addr&gt;</code>，<strong>查看内存，n、f、u为查看命令的可选参数，addr为起始地址</strong>。</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">代号</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">n</td>
+<td align="center">表示显示内容的个数，<strong>即起始地址后几个的内容</strong>。</td>
+</tr>
+<tr>
+<td align="center">f</td>
+<td align="center">表示输出格式，默认情况下，取决于数据类型，但可选有：<br /><strong>x d u o t c f</strong>：十六进制、有符号十进制、无符号十进制、八进制、二进制、字符、浮点</td>
+</tr>
+<tr>
+<td align="center">u</td>
+<td align="center">表示<strong>从当前地址向后请求的字节数</strong>，默认四字节，当指定字节长度后，GDB从指定内存地址开始读，可选：<br /><strong>b h w g</strong>：字节、双字节、四字节、八字节</td>
+</tr>
+</tbody></table>
+<p>可以理解为：<strong>从addr地址开始以f格式显示n个u数值</strong>。</p>
+<p><strong>观察窗口</strong>：</p>
+<ul>
+<li><code>watch 条件</code>，<strong>被写变量&#x2F;表达式设置监视点</strong>，<strong>一旦该值有变化，就立即停止程序</strong>。例如，<code>watch i&gt;3</code>。</li>
+<li><code>rewatch</code>，<strong>被读变量&#x2F;表达式设置监视点</strong>，<strong>一旦该值被读取，就立即停止程序</strong>。</li>
+<li><code>awatch</code>，<strong>当变量被读被写时，程序停止</strong>。</li>
+<li><code>info watchpoints</code>，<strong>用于列出当前所设置的所有监视点的相关信息</strong>。</li>
+</ul>
+<img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240221154434206.png" alt="image-20240221154434206" style="zoom:80%;" />
+
+<p>演示了：<strong>在第一行设置断点，使用next、step单步执行、观察窗口、查看变量值</strong>。</p>
+<p><strong>检查栈信息</strong>：</p>
+<p>栈是一种有限定性的线性表，<strong>当程序调用函数时，函数的地址、函数参数、函数内的局部变量都被压入栈中</strong>。</p>
+<p>通过GDB可以查看栈层消息：<strong>栈的层编号、当前函数名、函数参数值、函数所在文件及行号、函数执行到的语句</strong>。</p>
+<ul>
+<li><code>backtrace</code>，简写形式为<strong>bt</strong>，用于显示当前函数调用栈的<strong>所有信息</strong>。</li>
+<li><code>backtrace n</code>，简写形式为<strong>bt n</strong>，n为正整数，<strong>显示栈顶上n层的栈信息</strong>，n为负数，则是<strong>显示栈底下n层的信息</strong>。</li>
+<li><code>frame n</code>，简写形式为<strong>f n</strong>，n从0开始的整数，表示栈中的层编号，<strong>显示第n层栈的信息，没有n则显示当前栈层的信息</strong>。</li>
+<li><code>up n</code>，<strong>向栈底方向移动n层，没有n，则表示移动一层，在栈中栈底位于高地址区域，因此用up，对应的有down</strong>。</li>
+</ul>
+<img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240221161416630.png" alt="image-20240221161416630" style="zoom:80%;" />
+
+<ul>
+<li><code>info frame</code>，简写形式<strong>info f</strong>，<strong>实现更为详细的栈层信息，例如：被调用函数地址、所使用的编程语言、函数参数地址及值、局部变量地址等</strong>。</li>
+<li><code>info args</code>，<strong>显示当前函数的参数名及值</strong>。</li>
+<li><code>info locals</code>，<strong>显示当前函数局部变量及其值</strong>。</li>
+<li><code>info catch</code>，<strong>显示当前函数中的异常处理信息</strong>。</li>
+</ul>
+<img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240221162123334.png" alt="image-20240221162123334" style="zoom:80%;" />
+
+
+
+<p><strong>检查源代码功能及其命令</strong>：</p>
+<p>在使用GDB工具时，通常加上<code>-g</code>参数，将源程序的信息编译到执行文件中，此外查看源代码的有：</p>
+<ul>
+<li><code>list</code>，<strong>不加任何参数表示显示当前行后面的代码</strong>。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">+</td>
+<td align="center">显示当前行号后面的代码。</td>
+</tr>
+<tr>
+<td align="center">-</td>
+<td align="center">显示当前行号前面的代码。</td>
+</tr>
+<tr>
+<td align="center">n</td>
+<td align="center">显示程序第n行后的代码。</td>
+</tr>
+<tr>
+<td align="center">function</td>
+<td align="center">显示函数名为function的函数代码。</td>
+</tr>
+<tr>
+<td align="center">first,last</td>
+<td align="center">显示从first到last之间的代码。</td>
+</tr>
+<tr>
+<td align="center">,last</td>
+<td align="center"><strong>显示当前行到last行的代码</strong>。</td>
+</tr>
+<tr>
+<td align="center">filename:n</td>
+<td align="center"><strong>显示文件名为filename文件中的第n行代码</strong>。</td>
+</tr>
+<tr>
+<td align="center">filename:function</td>
+<td align="center"><strong>显示filename文件中function函数的代码</strong>。</td>
+</tr>
+</tbody></table>
+<p><strong>默认情况下，list命令会一次显示10行</strong>，可通过：</p>
+<ul>
+<li><code>set listsize n</code>，<strong>n为显示的行数</strong>，该指令可设置每次显示的代码行数。</li>
+<li><code>show listsize</code>，显示当前行数显示设置。</li>
+</ul>
+<img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240221164014828.png" alt="image-20240221164014828" style="zoom:80%;" />
+
+<p>使用GDB调试程序时，难免需要查看某一行代码所在的内存地址等信息，故：</p>
+<ul>
+<li><code>info line</code>，<strong>用于查看程序在运行时所指定的源代码的内存地址，后跟行号或函数名</strong>。</li>
+<li><code>disassemble</code>，<strong>反汇编</strong>，查看当前执行的机器码。</li>
+</ul>
+<img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240221165437993.png" alt="image-20240221165437993" style="zoom:80%;" />
+
+
+
+<p><strong>改变程序的运行功能及其命令：</strong></p>
+<p>调试程序时，并不是每条语句都需要执行，可以通过跳转语句，修改变量值的方式。</p>
+<ul>
+<li><code>set var 赋值等式</code>，<strong>改变变量的值</strong>，需要注意的是：若存在变量<strong>width</strong>，则避免<code>set width</code>，理应使用：<code>set var width=5</code>。</li>
+<li><code>set $ps=addr</code>，<strong>更改跳转执行的地址</strong>。</li>
+<li><code>jump file:n</code>，<strong>跳转到文件file的第n行</strong>。又或者是：<code>set addr</code>，<strong>跳转到地址为addr的语句开始执行</strong>。使用jump会忽略正常顺序。</li>
+<li><code>return</code>，跳出函数，或返回一个值。</li>
+<li><code>call 表达式</code>，用于显示表达式的值，<strong>如果表达式是函数名，则强制性跳转到该函数，并返回函数值，print也可同样使用</strong>。</li>
+</ul>
+<p><strong>多线程程序调试</strong>：</p>
+<p>多线程已经被许多操作系统所支持，在LInux平台上的程序设计包括：<strong>多任务程序设计、并发程序设计、网络程序设计和数据共享等</strong>。</p>
+<p>在Linux平台上，<strong>多线程遵循POSIX线程接口，称为pthread</strong>。</p>
+<p><strong>保存编译器中间结果</strong>：</p>
+<ul>
+<li><code>gcc -save-temps foo.c -o foo</code>，该指令是将编译器生成的中间结果保存，便于手工调整代码。</li>
+<li><code>-P</code>和<code>-pg</code>，该指令会将<strong>刨析信息</strong>加入到生成的二进制文件中，便于开发者开发更加高性能的程序。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">指令</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-p</td>
+<td align="center">在生成的代码中加入通用刨析工具能够识别的统计信息。</td>
+</tr>
+<tr>
+<td align="center">-pg</td>
+<td align="center">生成只有<strong>GNU</strong>才能识别的统计信息。</td>
+</tr>
+</tbody></table>
+<p>此外，虽然GCC允许优化与加入调试符号信息同时进行，但应当避免避免这种情况的出现。</p>
+<h3 id="4-3-代码优化"><a href="#4-3-代码优化" class="headerlink" title="4.3 代码优化"></a>4.3 代码优化</h3><p>GCC提供的代码优化功能比较强大：</p>
+<ul>
+<li><p><code>-On</code>，来控制优化代码的生成，其中n代表优化级别，典型值：0 2 3。</p>
+<table>
+<thead>
+<tr>
+<th align="center">代号</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">减少代码的长度和执行时间，一般包含<strong>线程跳转和延迟退栈</strong>。</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">在1的基础上，完成如<strong>处理器指令调度</strong>等。</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">在前者的基础上，完成<strong>循环展开</strong>等。</td>
+</tr>
+</tbody></table>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">double</span> counter;</span><br><span class="line">    <span class="type">double</span> result;</span><br><span class="line">    <span class="type">double</span> temp;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(counter=<span class="number">0</span>;counter&lt;<span class="number">2000.0</span>*<span class="number">2000.0</span>*<span class="number">2000.0</span>/<span class="number">20.0</span>+<span class="number">2022</span>;counter+=(<span class="number">5</span><span class="number">-1</span>)/<span class="number">4</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        temp=counter/<span class="number">1979</span>;</span><br><span class="line">        result=counter;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Result is %lf\n&quot;</span>,result);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>则通过系统<code>time</code>指令查询运行时间，有：</p>
+<img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240220173456652.png" alt="image-20240220173456652" style="zoom:80%;" /></li>
+</ul>
+<p>但是也要注意优化带来的一些弊端：</p>
+<ul>
+<li>优化等级越高，编译时间越长。</li>
+<li>优化会增加可执行文件的体积，特别是<strong>能够申请到的内存有限时</strong>，例如嵌入式设备中。</li>
+<li>跟踪调试时，优化代码，会导致跟踪和调试变难。</li>
+</ul>
+<h2 id="5-linux进程控制"><a href="#5-linux进程控制" class="headerlink" title="5. linux进程控制"></a>5. linux进程控制</h2><p><strong>进程</strong>的出现是为了使多个程序并发执行，用以改善资源的利用率，提高系统的吞吐量。</p>
+<ul>
+<li>在Linux系统中，可以<strong>ps -aux</strong>指令查看系统中正在进行的进程信息。</li>
+</ul>
+<p>我们理应知道：在Linux环境的<strong>进程特性</strong>。</p>
+<ul>
+<li><strong>动态性</strong>：进程是程序的执行，是程序在处理机上执行时的一个活动。</li>
+<li><strong>并发性</strong>：多个程序可以<strong>同时运行在同一内存空间上</strong>。</li>
+<li><strong>独立性</strong>：<strong>每个进程都是运行在各自的虚拟空间中</strong>，互不干扰，是独立获得资源和调度的基本单位。</li>
+<li><strong>异步性</strong>：各个进程都是按照自己运行速度执行。</li>
+<li><strong>结构特性</strong>：每个进程都具有自己的<strong>私有空间</strong>，在该空间中，进程由<strong>代码段、数据段以及堆栈段构成</strong>。</li>
+</ul>
+<p>此外，进程也有相关属性信息。</p>
+<h3 id="5-1-进程的基本操作"><a href="#5-1-进程的基本操作" class="headerlink" title="5.1 进程的基本操作"></a>5.1 进程的基本操作</h3><h4 id="5-1-1-fork-和-vfork"><a href="#5-1-1-fork-和-vfork" class="headerlink" title="5.1.1 fork() 和 vfork()"></a>5.1.1 fork() 和 vfork()</h4><ul>
+<li><p><strong>pid_t</strong>：用于定义进程的ID，可以理解为非负的整数。</p>
+</li>
+<li><p><strong>fork()<strong>：创建一个新的进程，</strong>新进程为当前进程的子进程，当前进程就被称为父进程，可以通过fork()函数的返回值，判断是在子进程还是父进程</strong>。</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">pid_t</span> <span class="title function_">fork</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"><span class="comment">//使用fork()函数，需要调用&lt;sys/types.h&gt;和&lt;unistd.h&gt;头文件，返回值类型为pid_t.</span></span><br></pre></td></tr></table></figure>
+
+<p>若返回值PID为<strong>进程号</strong>则在父进程中，返回值为<strong>0</strong>，则在子进程中。进程创建失败返回-1，错误信息有：</p>
+<ul>
+<li><strong>EAGAIN</strong>：表示<strong>fork()函数没有足够的内存用于复制父进程的分页表和进程结构数据</strong>。</li>
+<li><strong>ENOMEM</strong>：表示<strong>fork()函数分配必要的内核数据结构时，内存不够</strong>。</li>
+<li>系统运行如下：</li>
+</ul>
+<p><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240302140313359.png" alt="image-20240302140313359"></p>
+<p>我们可以发现，<strong>fork()函数具有调用一次，返回两次</strong>的特性，这是因为在子进程中返回0，然后又在父进程中返回PID，<strong>但返回顺序不定</strong>。</p>
+<ul>
+<li><strong>vfork()<strong>：与fork函数相同，都是系统调用函数，两者的区别是：</strong>fork()函数会复制父进程的所有资源，包括：进程环境、内存资源等，而vfork()函数在创建子进程时，不会复制父进程的所有资源，父子进程共享地址空间</strong>。所以在子进程中修改内存空间中的变量时，实际是在修改父进程虚拟空间中的值。</li>
+<li>值得注意的是，<strong>在使用vfork()函数时，父进程会被阻塞，需要在子进程中调用_exit()函数退出子进程，不能使用exit()函数退出。</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> gvar=<span class="number">2</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">    <span class="type">pid_t</span> pid;</span><br><span class="line">    <span class="type">int</span> var=<span class="number">5</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;process id: %ld\n&quot;</span>,(<span class="type">long</span>)getpid());</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;gvar=%d var=%d\n&quot;</span>,gvar,var);</span><br><span class="line">    <span class="keyword">if</span>((pid=vfork())&lt;<span class="number">0</span>)&#123;			<span class="comment">/*创建一个新进程*/</span></span><br><span class="line">        perror(<span class="string">&quot;error!&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(pid==<span class="number">0</span>)&#123;		<span class="comment">/*子进程*/</span></span><br><span class="line">        gvar--;</span><br><span class="line">        var++;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;the child process id: %ld\ngvar=%d var=%d\n&quot;</span>,(<span class="type">long</span>)getpid(),gvar,var);</span><br><span class="line">        _exit(<span class="number">0</span>);		<span class="comment">/*父进程被阻塞，退出子进程*/</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;the parent process id: %ld\ngvar=%d var=%d\n&quot;</span>,(<span class="type">long</span>)getpid(),gvar,var);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如上图，其结果为：</p>
+<p><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240302144704501.png" alt="image-20240302144704501"></p>
+<p>可以看出，<strong>在子进程中操作变量，也是改变父进程的中的值</strong>。可以将vfork函数换为fork函数。通过对比可知，符合结论。</p>
+<p><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240302144826969.png" alt="image-20240302144826969"></p>
+<h4 id="5-1-2-exec-函数族"><a href="#5-1-2-exec-函数族" class="headerlink" title="5.1.2 exec()函数族"></a>5.1.2 exec()函数族</h4><ul>
+<li><strong>exec()函数族</strong>：一般创建新进程后，都是希望执行不同的操作，故Linux系统<strong>提供了一个exec()函数族，用于创建和修改子进程</strong>。</li>
+<li><strong>调用exec()函数时，子进程中的代码段、数据段和堆栈段都将被替换，由于exec()函数并没有创建新进程，故子进程ID不变。</strong></li>
+<li>exec函数族的函数执行成功后不会返回，调用失败时，会设置errno并返回-1，然后从原程序的调用点接着往下执行。</li>
+<li><strong>exec()函数有</strong>：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">execl</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *path,<span class="type">const</span> <span class="type">char</span> *arg,...)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">execlp</span><span class="params">(<span class="type">const</span> *file,<span class="type">const</span> <span class="type">char</span> *arg,...)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">execle</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *path,<span class="type">const</span> <span class="type">char</span> *arg,...,<span class="type">char</span>* <span class="type">const</span> envp[])</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">execv</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *path,<span class="type">const</span> <span class="type">char</span> *argv[])</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">execve</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *path,<span class="type">const</span> <span class="type">char</span>*argv[],<span class="type">char</span> *<span class="type">const</span> envp[])</span>;	<span class="comment">//envp为Linux系统下的全局指针</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">execvp</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *file,<span class="type">const</span> <span class="type">char</span> *argv[])</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>path：<strong>可执行文件名字</strong>。<br>arg：<strong>可执行程序所带的参数，第一个参数为可执行文件名字，没有带路径且arg必须以NULL结束</strong>。<br>file：<strong>如果参数file中包含&#x2F;，则就将其视为路径名，否则就按 PATH环境变量，在它所指定的各目录中搜寻可执行文件</strong>。</p>
+</li>
+<li><p>这些函数都定义在系统库里，且必须引用头文件，且<strong>必须定义一个全局变量</strong>：</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="type">char</span> **environ;</span><br></pre></td></tr></table></figure>
+
+<p>上述定义的变量是一个指向Linux系统全局变量的指针，定义后，<strong>就可以在当前工作目录中执行系统程序，如同在shell中不输入路径直接运行VIM和等程序一样</strong>。</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">execlp <strong>带p</strong></td>
+<td align="center">path，<strong>使用文件名，或者在PATH中寻找</strong>。</td>
+</tr>
+<tr>
+<td align="center">execl <strong>带l</strong></td>
+<td align="center">list，代表<strong>使用参数列表，参数个数不定，结尾以NULL结束。</strong></td>
+</tr>
+<tr>
+<td align="center">execv <strong>带v</strong></td>
+<td align="center">vector，代表<strong>需要先构建参数数组指针，并将该地址作为输入，数组中最后一个指针也要输入NULL</strong>。</td>
+</tr>
+<tr>
+<td align="center">execv <strong>带e</strong></td>
+<td align="center">environment，代表<strong>使用新的环境变量代替调用进程的环境变量。</strong></td>
+</tr>
+</tbody></table>
+<p>其中<strong>execve()<strong>函数是其余5个exec函数的基础，只有</strong>execve()<strong>函数才经过系统调用，故使用其它函数后，都</strong>需要最后调用execve()函数</strong>。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*execve.c文件*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">char</span> **environ;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span> <span class="params">(<span class="type">int</span> argc,<span class="type">char</span>* argv[])</span>&#123;</span><br><span class="line">    execve(<span class="string">&quot;new&quot;</span>,argv,environ);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;正常无法输出此信息！\n&quot;</span>);</span><br><span class="line">    rerutn <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*new2.c文件*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;welcome to it.\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>execve()函数的作用是创建一个子进程，在子进程中执行另一个文件</strong>。</p>
+<p><strong>显然输出为<code>welcome to it.</code>，但是没有输出“正常消息…”，这是因为使用execve函数，已经把代码段、数据段、堆栈段进行替换了，原来的代码就被抛弃了，如果不想因为调用这个函数就抛弃了其余代码，则可以将其余部分放置在父进程中。</strong></p>
+<p>如：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*修改execve文件*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">char</span> **environ;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">    <span class="type">pid_t</span> pid;</span><br><span class="line">    <span class="keyword">if</span>((pid=fork())&lt;<span class="number">0</span>) <span class="built_in">puts</span>(<span class="string">&quot;Error!\n&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span>(pid==<span class="number">0</span>)  execve(<span class="string">&quot;new&quot;</span>,argv,environ);		<span class="comment">//子进程调用另一个文件</span></span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;正常无法输出此信息。\n&quot;</span>);	<span class="comment">//父进程输出这个消息</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面演示**execlp()**函数：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc,<span class="type">char</span> *argv[])</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(argc&lt;<span class="number">2</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;vi的等效用法：	%s filename\n&quot;</span>,argv[<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    execlp(<span class="string">&quot;/bin/vi&quot;</span>,<span class="string">&quot;vi&quot;</span>,argv[<span class="number">1</span>],(<span class="type">char</span>*)<span class="literal">NULL</span>);		<span class="comment">//此处file为路径名，vi + argv[1]构成参数列表，NULL结束</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下：</p>
+<p><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240302161641284.png" alt="image-20240302161641284"></p>
+<p><strong>argc是传递给main的参数个数，argv是传递给main的参数，且第一个参数为程序名。</strong></p>
+<h4 id="5-1-3-进程等待"><a href="#5-1-3-进程等待" class="headerlink" title="5.1.3 进程等待"></a>5.1.3 进程等待</h4><p>进程等待是为了同步父进程和子进程，通常需要调用**wait()<strong>等待函数使父进程等待子进程结束，否则子进程会进入</strong>僵尸(Zombie)**状态。</p>
+<ul>
+<li>使用<code>man 2 wait</code>查看wait()函数原型：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/wait.h&gt;</span></span></span><br><span class="line"><span class="type">pid_t</span> <span class="title function_">wait</span><span class="params">(<span class="type">int</span> *status)</span>;</span><br><span class="line"><span class="type">pid_t</span> <span class="title function_">waitpid</span><span class="params">(<span class="type">pid_t</span> pid, <span class="type">int</span> *status, <span class="type">int</span> options)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">waitid</span><span class="params">(<span class="type">idtype_t</span> idtype, <span class="type">id_t</span> id, <span class="type">siginfo_t</span> *infop, <span class="type">int</span> options)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>对于wait函数的工作流程为：首先判断子进程是否存在，即创建成功否，若不存在，退出进程，并提示相关信息，若<strong>创建成功，将会挂起父进程，直到子进程结束，并返回结束时的状态和子进程的PID</strong>。</p>
+<ul>
+<li>若不存在子进程，则为<strong>ECHILD</strong>。</li>
+<li>若存在子进程，退出的进程时的结束状态为：</li>
+<li>子进程正常结束，函数返回子进程的PID和状态，<strong>此时的参数status指向的状态变量就存放在子进程的退出码中，退出码是所谓的从子进程的main()函数中返回的值或子进程中exit()函数的参数</strong>。</li>
+<li>信号引起子进程结束，wait()函数系统调用中发送信号给子进程，可能导致子进程结束运行，若发送的信号被子进程捕获，则终止子进程，此时参数status返回的状态值为接受到的信号值，存放在最后一个字节中。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/wait.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="comment">/*自定义功能函数，判断正常退出还是信号退出*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">exit_s</span><span class="params">(<span class="type">int</span> status)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(WIFEXITED(status))</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;normal exit,status=%d\n&quot;</span>,WEXITSTATUS(status));</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(WIFSIGNALED(status))</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;signal exit!status=%d\n&quot;</span>,WTERMSIG(status));</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">pid_t</span> pid,pid1;</span><br><span class="line">	<span class="type">int</span> status;</span><br><span class="line">	<span class="keyword">if</span>((pid=fork())&lt;<span class="number">0</span>)		<span class="comment">//创建子进程</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;child process error!\n&quot;</span>);</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(pid==<span class="number">0</span>)		<span class="comment">//子进程</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;the child process!\n&quot;</span>);</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">2</span>);		<span class="comment">//调用exit退出函数正常退出</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(wait(&amp;status)!=pid)	<span class="comment">//判断子进程是否正常结束</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;this is a parent process!\nwait error!\n&quot;</span>);</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">	exit_s(status);		<span class="comment">//到这儿说明子进程正常结束</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*模拟信号结束*/</span></span><br><span class="line">	<span class="keyword">if</span>((pid=fork())&lt;<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;child process error!\n&quot;</span>);</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(pid==<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;the child process!\n&quot;</span>);</span><br><span class="line">		pid1=getpid();</span><br><span class="line">	<span class="comment">//	kill(pid1,9);		//结束进程</span></span><br><span class="line">	<span class="comment">//	kill(pid1,17);		//进入父进程</span></span><br><span class="line">		kill(pid1,<span class="number">19</span>);		<span class="comment">//暂停停止进程</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(wait(&amp;status)!=pid)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;this is a parent process!\nwait error!\n&quot;</span>);</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	exit_s(status);</span><br><span class="line"><span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在<strong>Linux系统中可以使用 kill _l 查看这些信号的具体情况、信号类型以及对应数字</strong>。</li>
+<li>上述代码用到了一些状态宏：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">宏</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">WIFEXITED(status)</td>
+<td align="center">子进程正常结束，返回值为<strong>1</strong>，正常退出是用<strong>exit、_exit</strong>。</td>
+</tr>
+<tr>
+<td align="center">WIFSIGNALED(status)</td>
+<td align="center">子进程没有被捕获的信号终止时，返回为<strong>1</strong>。</td>
+</tr>
+<tr>
+<td align="center">WIFSTOPPED(status)</td>
+<td align="center">子进程接收到停止信号，返回<strong>1</strong>，这种情况只出现在waitpid()函数使用了<strong>WUNTRACED选项</strong>。</td>
+</tr>
+<tr>
+<td align="center">WEXITSTUTAS(status)</td>
+<td align="center">当WIFEXITED(status)为真时调用，返回状态码的低8位。</td>
+</tr>
+<tr>
+<td align="center">WIFCONTINUED(status)</td>
+<td align="center">接受信号后，继续运行。</td>
+</tr>
+<tr>
+<td align="center">WTERMSIG(status)</td>
+<td align="center">当WIFSOGNALED(status)为真时调用，返回引起终止的信号代码。</td>
+</tr>
+<tr>
+<td align="center">WSTOPSIG</td>
+<td align="center">当WIFSTOPPED为真时，返回进程停止的信号类型。</td>
+</tr>
+</tbody></table>
+<ul>
+<li>除了<strong>wait()<strong>外还有</strong>waitpid()<strong>，其区别是：</strong>wait用于等待所以子进程结束，而waitpid用于特定pid进程</strong>。而<strong>waitpid</strong>中pid参数与实际控制的pid参数，有：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">关系</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">pid&lt;-1</td>
+<td align="center">等待进程组ID与pid绝对值的任一子进程相等时退出。</td>
+</tr>
+<tr>
+<td align="center">pid&#x3D;-1</td>
+<td align="center">等待任意一个子进程退出。</td>
+</tr>
+<tr>
+<td align="center">pid&#x3D;0</td>
+<td align="center"><strong>等待进程组ID与调用进程的组ID的任一子进程相等时退出。</strong></td>
+</tr>
+<tr>
+<td align="center">pid&gt;0</td>
+<td align="center">等待进程ID等于pid的子进程时退出。</td>
+</tr>
+<tr>
+<td align="center">WNOHANG</td>
+<td align="center">表示没有子进程退出就立即返回。</td>
+</tr>
+<tr>
+<td align="center">WUNTRACED</td>
+<td align="center">表示发现若子进程处于僵尸状态但未报告，则立即返回。</td>
+</tr>
+</tbody></table>
+<h3 id="1-常见算法"><a href="#1-常见算法" class="headerlink" title="1. 常见算法"></a>1. 常见算法</h3><h4 id="1-1-冒泡算法"><a href="#1-1-冒泡算法" class="headerlink" title="1.1 冒泡算法"></a>1.1 冒泡算法</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*实现对数组的排序，从小到大*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*传入一个一维数组，并传给成员个数*/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">BubbleSort</span><span class="params">(<span class="type">int</span> *<span class="built_in">array</span>,<span class="type">int</span> count)</span>&#123;</span><br><span class="line">    <span class="type">int</span> temp,i,j;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;count;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(j=count<span class="number">-1</span>;j&gt;i;j--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">array</span>[i]&gt;<span class="built_in">array</span>[j])&#123;</span><br><span class="line">                temp=<span class="built_in">array</span>[i];</span><br><span class="line">                <span class="built_in">array</span>[i]=<span class="built_in">array</span>[j];</span><br><span class="line">                <span class="built_in">array</span>[j]=temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="type">int</span> Data[]=&#123;<span class="number">5</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">1</span>,<span class="number">6</span>,<span class="number">4</span>,<span class="number">8</span>,<span class="number">0</span>&#125;;</span><br><span class="line">    BubbleSort(<span class="built_in">array</span>,<span class="number">10</span>);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d  &quot;</span>,Data[i]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-链表"><a href="#1-2-链表" class="headerlink" title="1.2 链表"></a>1.2 链表</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;malloc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LEN sizeof(struct student)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">student</span>&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">student</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;stu;	<span class="comment">//声明学生结构体及指向下一个成员。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*创建链表，输入学号为0截止*/</span></span><br><span class="line">stu *<span class="title function_">create</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">    stu *p,*temp,*head;</span><br><span class="line">    p=(stu *)<span class="built_in">malloc</span>(LEN);	<span class="comment">//分配内存空间</span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d,%d,%f&quot;</span>,&amp;p-&gt;num,&amp;p-&gt;age,&amp;p-&gt;score);	<span class="comment">//读取数据</span></span><br><span class="line">    head=p;</span><br><span class="line">    <span class="keyword">while</span>(p-&gt;num!=<span class="number">0</span>)&#123;</span><br><span class="line">        temp=(stu *)<span class="built_in">malloc</span>(LEN);	<span class="comment">//分配内存空间</span></span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d,%d,%f&quot;</span>,&amp;temp-&gt;num,&amp;temp-&gt;age,&amp;temp-&gt;score);	<span class="comment">//读取数据</span></span><br><span class="line">        p-&gt;next=temp;	<span class="comment">//将链表链接新创建的表</span></span><br><span class="line">        p=temp;	<span class="comment">//重定向新创建的表</span></span><br><span class="line">    &#125;</span><br><span class="line">    p-&gt;next=<span class="literal">NULL</span>;	<span class="comment">//到链表尾部</span></span><br><span class="line">    <span class="keyword">return</span>(head);	<span class="comment">//返回表头</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">    stu *table;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Enter the students&#x27;s message: \n&quot;</span>);</span><br><span class="line">    table=create();</span><br><span class="line">    <span class="keyword">if</span>(table!=<span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">do</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d,%d,%f\n&quot;</span>,table-&gt;num,table-&gt;age,table-&gt;score);</span><br><span class="line">            table=table-&gt;next;</span><br><span class="line">        &#125;<span class="keyword">while</span>(table!=<span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://lancit.top">lancit</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://lancit.top">https://lancit.top</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">此文章版权归lancit所有，如有转载，请注明来自原作者。</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/linuxC/">linuxC</a></div><div class="post_share"><div class="social-share" data-image="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/linuxc.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/04/20/hello-hexo/" title="hello-hexo"><img class="cover" src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/hexo.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">hello-hexo</div></div></a></div><div class="next-post pull-right"><a href="/2024/05/03/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/" title="常见算法"><img class="cover" src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">常见算法</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/theme_img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">lancit</div><div class="author-info__description">车马很慢，阳光很暖。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/lancitx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/lancitx" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ukio169@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">天道酬勤，欢迎志同道合的友友~ <img style="max-width:100%;overflow:hidden;" src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/an_img/sunny.gif" alt=""></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux-C"><span class="toc-number">1.</span> <span class="toc-text">Linux C</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80"><span class="toc-number">1.1.</span> <span class="toc-text">1. C语言基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 运算符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">2. 内存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%86%85%E5%AD%98%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 内存操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E9%93%BE%E8%A1%A8"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 链表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Vim%E5%92%8CEmacs"><span class="toc-number">1.3.</span> <span class="toc-text">3. Vim和Emacs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-VIM"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 VIM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Emacs"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 Emacs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-GCC%E7%BC%96%E8%AF%91%E5%99%A8"><span class="toc-number">1.4.</span> <span class="toc-text">4. GCC编译器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-GCC%E7%BC%96%E8%AF%91"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1 GCC编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-GDB%E8%B0%83%E8%AF%95"><span class="toc-number">1.4.2.</span> <span class="toc-text">4.2 GDB调试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-1-gdb%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">4.2.1 gdb预处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-2-gdb%E8%B0%83%E8%AF%95"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">4.2.2 gdb调试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96"><span class="toc-number">1.4.3.</span> <span class="toc-text">4.3 代码优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-linux%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="toc-number">1.5.</span> <span class="toc-text">5. linux进程控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.5.1.</span> <span class="toc-text">5.1 进程的基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-1-fork-%E5%92%8C-vfork"><span class="toc-number">1.5.1.1.</span> <span class="toc-text">5.1.1 fork() 和 vfork()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-2-exec-%E5%87%BD%E6%95%B0%E6%97%8F"><span class="toc-number">1.5.1.2.</span> <span class="toc-text">5.1.2 exec()函数族</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-3-%E8%BF%9B%E7%A8%8B%E7%AD%89%E5%BE%85"><span class="toc-number">1.5.1.3.</span> <span class="toc-text">5.1.3 进程等待</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95"><span class="toc-number">1.5.2.</span> <span class="toc-text">1. 常见算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-%E5%86%92%E6%B3%A1%E7%AE%97%E6%B3%95"><span class="toc-number">1.5.2.1.</span> <span class="toc-text">1.1 冒泡算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-%E9%93%BE%E8%A1%A8"><span class="toc-number">1.5.2.2.</span> <span class="toc-text">1.2 链表</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/05/03/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/" title="常见算法"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="常见算法"/></a><div class="content"><a class="title" href="/2024/05/03/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/" title="常见算法">常见算法</a><time datetime="2024-05-03T14:52:42.000Z" title="发表于 2024-05-03 22:52:42">2024-05-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/20/LinuxC%20%E5%9F%BA%E7%A1%80%E7%AF%87/" title="LinuxC%20基础篇"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/linuxc.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LinuxC%20基础篇"/></a><div class="content"><a class="title" href="/2024/04/20/LinuxC%20%E5%9F%BA%E7%A1%80%E7%AF%87/" title="LinuxC%20基础篇">LinuxC%20基础篇</a><time datetime="2024-04-20T12:10:40.000Z" title="发表于 2024-04-20 20:10:40">2024-04-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/20/hello-hexo/" title="hello-hexo"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/hexo.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="hello-hexo"/></a><div class="content"><a class="title" href="/2024/04/20/hello-hexo/" title="hello-hexo">hello-hexo</a><time datetime="2024-04-20T04:00:00.000Z" title="发表于 2024-04-20 12:00:00">2024-04-20</time></div></div></div></div></div></div></main><footer id="footer" style="background: #87CEFA"><div id="footer-wrap"><div class="copyright">&copy;2024 By lancit</div><div class="footer_custom_text">书山有路勤为径，学海无涯苦作舟。</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
