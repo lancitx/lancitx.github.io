@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>LinuxC 提高篇 | lancit の blog</title><meta name="author" content="lancit"><meta name="copyright" content="lancit"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="LinuxC 提高篇上面我们已经初步介绍了，C语言的一些基本语法和拓展应用，  例如：枚举类型、结构体位字段、共用体以及内存的分配和释放， 其次再对Linux环境下的gcc编译器、VIM、GDB等有一个初步的介绍， 下面将进行一些核心技术的介绍。   5. linux进程控制 使用ps -aux查看系统中正在进行的进程信息。  我们理应知道：在Linux环境的进程特性。  动态性：进程是程序的执行">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>LinuxC 提高篇 | lancit の blog</title><meta name="author" content="lancit"><meta name="copyright" content="lancit"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="LinuxC 提高篇 上面我们已经初步介绍了，C语言的一些基本语法和拓展应用，  例如：枚举类型、结构体位字段、共用体以及内存的分配和释放， 其次再对Linux环境下的gcc编译器、VIM、GDB等有一个初步的介绍， 下面将进行一些核心技术的介绍。   5. linux进程控制  使用ps -aux查看系统中正在进行的进程信息。  我们理应知道：在Linux环境的进程特性。  动态性：进程是程序的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LinuxC 提高篇">
 <meta property="og:url" content="http://example.com/2024/05/03/LinuxC%20%E6%8F%90%E9%AB%98%E7%AF%87/index.html">
 <meta property="og:site_name" content="lancit の blog">
-<meta property="og:description" content="LinuxC 提高篇上面我们已经初步介绍了，C语言的一些基本语法和拓展应用，  例如：枚举类型、结构体位字段、共用体以及内存的分配和释放， 其次再对Linux环境下的gcc编译器、VIM、GDB等有一个初步的介绍， 下面将进行一些核心技术的介绍。   5. linux进程控制 使用ps -aux查看系统中正在进行的进程信息。  我们理应知道：在Linux环境的进程特性。  动态性：进程是程序的执行">
+<meta property="og:description" content="LinuxC 提高篇 上面我们已经初步介绍了，C语言的一些基本语法和拓展应用，  例如：枚举类型、结构体位字段、共用体以及内存的分配和释放， 其次再对Linux环境下的gcc编译器、VIM、GDB等有一个初步的介绍， 下面将进行一些核心技术的介绍。   5. linux进程控制  使用ps -aux查看系统中正在进行的进程信息。  我们理应知道：在Linux环境的进程特性。  动态性：进程是程序的">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/linuxc2.jpg">
 <meta property="article:published_time" content="2024-05-03T15:01:49.000Z">
@@ -174,14 +174,16 @@
     document.addEventListener('pjax:send', () => { preloader.initLoading() })
     document.addEventListener('pjax:complete', () => { preloader.endLoading() })
   }
-})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/theme_img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-folder-open"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/linux/"><i class="fa-fw far fa-sad-cry"></i><span> LinuxC</span></a></li><li><a class="site-page child" href="/stm32/"><i class="fa-fw far fa-sad-tear"></i><span> STM32</span></a></li><li><a class="site-page child" href="/Hcircuit/"><i class="fa-fw far fa-meh"></i><span> Hcircuit</span></a></li><li><a class="site-page child" href="/other/"><i class="fa-fw far fa-kiss-wink-heart"></i><span> Other</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw far fa-user"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="lancit の blog"><img class="site-icon" src="/img/nav.svg"/><span class="site-name">lancit の blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-folder-open"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/linux/"><i class="fa-fw far fa-sad-cry"></i><span> LinuxC</span></a></li><li><a class="site-page child" href="/stm32/"><i class="fa-fw far fa-sad-tear"></i><span> STM32</span></a></li><li><a class="site-page child" href="/Hcircuit/"><i class="fa-fw far fa-meh"></i><span> Hcircuit</span></a></li><li><a class="site-page child" href="/other/"><i class="fa-fw far fa-kiss-wink-heart"></i><span> Other</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw far fa-user"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">LinuxC 提高篇</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-05-03T15:01:49.000Z" title="发表于 2024-05-03 23:01:49">2024-05-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-13T13:15:40.833Z" title="更新于 2024-05-13 21:15:40">2024-05-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/linux/">linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="LinuxC 提高篇"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h2 id="LinuxC-提高篇"><a href="#LinuxC-提高篇" class="headerlink" title="LinuxC 提高篇"></a>LinuxC 提高篇</h2><p>上面我们已经初步介绍了，C语言的一些基本语法和拓展应用，</p>
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/theme_img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-folder-open"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/linux/"><i class="fa-fw far fa-sad-cry"></i><span> LinuxC</span></a></li><li><a class="site-page child" href="/stm32/"><i class="fa-fw far fa-sad-tear"></i><span> STM32</span></a></li><li><a class="site-page child" href="/Hcircuit/"><i class="fa-fw far fa-meh"></i><span> Hcircuit</span></a></li><li><a class="site-page child" href="/other/"><i class="fa-fw far fa-kiss-wink-heart"></i><span> Other</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw far fa-user"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="lancit の blog"><img class="site-icon" src="/img/nav.svg"/><span class="site-name">lancit の blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-folder-open"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/linux/"><i class="fa-fw far fa-sad-cry"></i><span> LinuxC</span></a></li><li><a class="site-page child" href="/stm32/"><i class="fa-fw far fa-sad-tear"></i><span> STM32</span></a></li><li><a class="site-page child" href="/Hcircuit/"><i class="fa-fw far fa-meh"></i><span> Hcircuit</span></a></li><li><a class="site-page child" href="/other/"><i class="fa-fw far fa-kiss-wink-heart"></i><span> Other</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw far fa-user"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">LinuxC 提高篇</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-05-03T15:01:49.000Z" title="发表于 2024-05-03 23:01:49">2024-05-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-13T13:15:40.833Z" title="更新于 2024-05-13 21:15:40">2024-05-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/linux/">linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="LinuxC 提高篇"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h2 id="LinuxC-提高篇">LinuxC 提高篇</h2>
+<p>上面我们已经初步介绍了，C语言的一些基本语法和拓展应用，</p>
 <ul>
 <li>例如：枚举类型、结构体位字段、共用体以及内存的分配和释放，</li>
 <li>其次再对Linux环境下的gcc编译器、VIM、GDB等有一个初步的介绍，</li>
 <li>下面将进行一些核心技术的介绍。</li>
 </ul>
 <hr>
-<h2 id="5-linux进程控制"><a href="#5-linux进程控制" class="headerlink" title="5. linux进程控制"></a>5. linux进程控制</h2><ul>
+<h2 id="5-linux进程控制">5. linux进程控制</h2>
+<ul>
 <li>使用<strong>ps -aux查看系统中正在进行的进程信息</strong>。</li>
 </ul>
 <p>我们理应知道：在Linux环境的<strong>进程特性</strong>。</p>
@@ -197,11 +199,15 @@
 <li><strong>ID、状态、进程切换、虚拟内存、文件描述符、用户ID、组ID等</strong>。</li>
 </ul>
 <hr>
-<h3 id="5-1-创建进程"><a href="#5-1-创建进程" class="headerlink" title="5.1 创建进程"></a>5.1 创建进程</h3><h4 id="5-1-1-fork-详解"><a href="#5-1-1-fork-详解" class="headerlink" title="5.1.1 fork() 详解"></a>5.1.1 fork() 详解</h4><p>在Linux系统下，进程的创建有函数：<strong>fork()、vfork()、exec()函数。</strong></p>
+<h3 id="5-1-创建进程">5.1 创建进程</h3>
+<h4 id="5-1-1-fork-详解">5.1.1 fork() 详解</h4>
+<p>在Linux系统下，进程的创建有函数：<strong>fork()、vfork()、exec()函数。</strong></p>
 <ul>
-<li><p><strong>pid_t</strong>：用于<strong>定义进程的ID</strong>，可以理解为非负的整数。</p>
+<li>
+<p><strong>pid_t</strong>：用于<strong>定义进程的ID</strong>，可以理解为非负的整数。</p>
 </li>
-<li><p><strong>fork()</strong>：创建一个新的进程，<strong>新进程为当前进程的子进程，当前进程就被称为父进程，可以通过fork()函数的返回值，判断是在子进程还是父进程</strong>。</p>
+<li>
+<p><strong>fork()</strong>：创建一个新的进程，<strong>新进程为当前进程的子进程，当前进程就被称为父进程，可以通过fork()函数的返回值，判断是在子进程还是父进程</strong>。</p>
 </li>
 </ul>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">pid_t</span> <span class="title function_">fork</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"><span class="comment">//使用fork()函数，需要调用&lt;sys/types.h&gt;和&lt;unistd.h&gt;头文件，返回值类型为pid_t.</span></span><br></pre></td></tr></table></figure>
@@ -228,11 +234,14 @@
 </ul>
 <p><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/LitN/image-20240509170650962.png" alt="image-20240509170650962"></p>
 <hr>
-<h4 id="5-1-2-vfork-详解"><a href="#5-1-2-vfork-详解" class="headerlink" title="5.1.2 vfork() 详解"></a>5.1.2 vfork() 详解</h4><p><strong>vfork()</strong>函数与<strong>fork()</strong>函数相同，但，</p>
+<h4 id="5-1-2-vfork-详解">5.1.2 vfork() 详解</h4>
+<p>**vfork()<strong>函数与</strong>fork()**函数相同，但，</p>
 <ul>
-<li><p><strong>fork()函数会复制父进程的所有资源，包括：进程环境、内存资源等，而vfork()函数在创建子进程时，不会复制父进程的所有资源，父子进程共享地址空间</strong>。所以<strong>在子进程中修改内存空间中的变量</strong>时，实际是在修改父进程<strong>虚拟空间中的值</strong>。</p>
+<li>
+<p><strong>fork()函数会复制父进程的所有资源，包括：进程环境、内存资源等，而vfork()函数在创建子进程时，不会复制父进程的所有资源，父子进程共享地址空间</strong>。所以<strong>在子进程中修改内存空间中的变量</strong>时，实际是在修改父进程<strong>虚拟空间中的值</strong>。</p>
 </li>
-<li><p>值得注意的是，<strong>在使用vfork()函数时，父进程会被阻塞，需要在子进程中调用_exit()函数退出子进程，不能使用exit()函数退出。</strong></p>
+<li>
+<p>值得注意的是，<strong>在使用vfork()函数时，父进程会被阻塞，需要在子进程中调用_exit()函数退出子进程，不能使用exit()函数退出。</strong></p>
 </li>
 </ul>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> gvar=<span class="number">2</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">    <span class="type">pid_t</span> pid;</span><br><span class="line">    <span class="type">int</span> var=<span class="number">5</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;process id: %ld\n&quot;</span>,(<span class="type">long</span>)getpid());</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;gvar=%d var=%d\n&quot;</span>,gvar,var);</span><br><span class="line">    <span class="keyword">if</span>((pid=vfork())&lt;<span class="number">0</span>)&#123;			<span class="comment">/*创建一个新进程*/</span></span><br><span class="line">        perror(<span class="string">&quot;error!&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(pid==<span class="number">0</span>)&#123;		<span class="comment">/*子进程*/</span></span><br><span class="line">        gvar--;</span><br><span class="line">        var++;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;the child process id: %ld\ngvar=%d var=%d\n&quot;</span>,(<span class="type">long</span>)getpid(),gvar,var);</span><br><span class="line">        _exit(<span class="number">0</span>);		<span class="comment">/*父进程被阻塞，退出子进程*/</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;the parent process id: %ld\ngvar=%d var=%d\n&quot;</span>,(<span class="type">long</span>)getpid(),gvar,var);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -240,7 +249,8 @@
 <p><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240302144704501.png" alt="image-20240302144704501"></p>
 <p>可以看出，<strong>在子进程中操作变量，也是改变父进程的中的值</strong>。可以将vfork函数换为fork函数。通过对比可知，符合结论。</p>
 <p><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240302144826969.png" alt="image-20240302144826969"></p>
-<h3 id="5-3-编辑进程"><a href="#5-3-编辑进程" class="headerlink" title="5.3 编辑进程"></a>5.3 编辑进程</h3><p>我们经过上面的学习后，知道如何建立一个进程，但<strong>复制父进程代码是没用的，我们希望子进程进行不同的操作</strong>，故：</p>
+<h3 id="5-3-编辑进程">5.3 编辑进程</h3>
+<p>我们经过上面的学习后，知道如何建立一个进程，但<strong>复制父进程代码是没用的，我们希望子进程进行不同的操作</strong>，故：</p>
 <ul>
 <li><strong>exec()函数族</strong>：Linux系统<strong>提供了一个exec()函数族，用于修改进程（执行新程序）</strong>。</li>
 <li><strong>调用exec()函数时，子进程中的代码段、数据段和堆栈段都将被替换，由于exec()函数并没有创建新进程，故子进程ID不变。</strong></li>
@@ -251,12 +261,11 @@
 <ul>
 <li>参数解释见后，</li>
 </ul>
-<p>这些函数都定义在<strong><sys/types.h>、<unistd.h></strong>两个库中，且<strong>必须在预定义时定义一个外部的全局变量</strong>：</p>
+<p>这些函数都定义在**&lt;sys/types.h&gt;、&lt;unistd.h&gt;<strong>两个库中，且</strong>必须在预定义时定义一个外部的全局变量**：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="type">char</span> **environ;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>上述定义的变量是<strong>一个指向Linux系统全局变量的指针</strong>，定义后，<strong>就可以在当前工作目录中执行系统程序，如同在shell中不输入路径直接运行VIM和等程序一样</strong>。</li>
 </ul>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -283,14 +292,15 @@
 </tr>
 </tbody>
 </table>
-</div>
-<h4 id="5-3-1-execve"><a href="#5-3-1-execve" class="headerlink" title="5.3.1 execve()"></a>5.3.1 execve()</h4><ul>
-<li><p><strong>execve()函数的作用是创建一个子进程，在子进程中执行另一个执行文件</strong>。</p>
+<h4 id="5-3-1-execve">5.3.1 execve()</h4>
+<ul>
+<li>
+<p><strong>execve()函数的作用是创建一个子进程，在子进程中执行另一个执行文件</strong>。</p>
 </li>
-<li><p><code>int execve(const char *path,const char*argv[],char *const envp[])</code>：其参数解析，</p>
+<li>
+<p><code>int execve(const char *path,const char*argv[],char *const envp[])</code>：其参数解析，</p>
 </li>
 </ul>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -313,8 +323,7 @@
 </tr>
 </tbody>
 </table>
-</div>
-<p>其中<strong>execve()</strong>函数是其余5个exec函数的基础，只有<strong>execve()</strong>函数才经过系统调用，故使用其它函数后，都<strong>需要最后调用execve()函数</strong>。</p>
+<p>其中<strong>execve()<strong>函数是其余5个exec函数的基础，只有</strong>execve()<strong>函数才经过系统调用，故使用其它函数后，都</strong>需要最后调用execve()函数</strong>。</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*execve.c文件*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">char</span> **environ;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span> <span class="params">(<span class="type">int</span> argc,<span class="type">char</span>* argv[])</span>&#123;</span><br><span class="line">    execve(<span class="string">&quot;new&quot;</span>,argv,environ);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;正常无法输出此信息！\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*new2.c文件*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;welcome to it.\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>对<strong>主函数的参数</strong>我有点想说的：</p>
 <p>这是 C 语言中定义主函数的典型方式之一。让我们一一解释每个参数的含义：</p>
@@ -327,25 +336,31 @@
 <p>结果：</p>
 <p><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/LitN/image-20240509210329602.png" alt="image-20240509210329602"></p>
 <ul>
-<li><p><strong>显然输出为<code>welcome to it.</code>，但是没有输出“正常无法…”，这是因为使用execve函数，已经把代码段、数据段、堆栈段进行替换了，原来的代码就被抛弃了。</strong></p>
+<li>
+<p><strong>显然输出为<code>welcome to it.</code>，但是没有输出“正常无法…”，这是因为使用execve函数，已经把代码段、数据段、堆栈段进行替换了，原来的代码就被抛弃了。</strong></p>
 </li>
-<li><p><strong>如果不想因为调用这个函数就抛弃了其余代码，则可以将其余部分放置在父进程中。</strong></p>
+<li>
+<p><strong>如果不想因为调用这个函数就抛弃了其余代码，则可以将其余部分放置在父进程中。</strong></p>
 </li>
 </ul>
 <p>如：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*修改execve文件*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">char</span> **environ;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">    <span class="type">pid_t</span> pid;</span><br><span class="line">    <span class="keyword">if</span>((pid=fork())&lt;<span class="number">0</span>) <span class="built_in">puts</span>(<span class="string">&quot;Error!\n&quot;</span>);	<span class="comment">// 创建子进程</span></span><br><span class="line">    <span class="keyword">if</span>(pid==<span class="number">0</span>)  execve(<span class="string">&quot;new&quot;</span>,argv,environ);		<span class="comment">//子进程资源被另一个执行文件覆盖</span></span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;正常无法输出此信息。\n&quot;</span>);	<span class="comment">//父进程输出这个消息</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="5-3-2-execlp"><a href="#5-3-2-execlp" class="headerlink" title="5.3.2 execlp()"></a>5.3.2 execlp()</h4><p>下面演示<strong>execlp()</strong>函数：</p>
+<h4 id="5-3-2-execlp">5.3.2 execlp()</h4>
+<p>下面演示**execlp()**函数：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc,<span class="type">char</span> *argv[])</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(argc&lt;<span class="number">2</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;vi的等效用法：	%s filename\n&quot;</span>,argv[<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    execlp(<span class="string">&quot;/bin/vi&quot;</span>,<span class="string">&quot;vi&quot;</span>,argv[<span class="number">1</span>],(<span class="type">char</span>*)<span class="literal">NULL</span>);		<span class="comment">//此处file为路径名，vi + argv[1]构成参数列表，NULL结束</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>运行结果如下：</p>
 <p><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240302161641284.png" alt="image-20240302161641284"></p>
 <ul>
 <li>其余exec()函数都大同小异，只是参数不同。</li>
 </ul>
-<h3 id="5-4-进程等待"><a href="#5-4-进程等待" class="headerlink" title="5.4 进程等待"></a>5.4 进程等待</h3><p>刚刚我们发现，由于<strong>子进程和父进程是两个独立的进程，会存在父子进程传递消息以及消息等待的需求</strong>，这就需要<strong>进程等待</strong>。</p>
+<h3 id="5-4-进程等待">5.4 进程等待</h3>
+<p>刚刚我们发现，由于<strong>子进程和父进程是两个独立的进程，会存在父子进程传递消息以及消息等待的需求</strong>，这就需要<strong>进程等待</strong>。</p>
 <ul>
-<li><p>通常需要<strong>调用wait()等待函数使父进程等待子进程结束</strong>，否则子进程会进入<strong>僵尸(Zombie)</strong>状态。</p>
+<li>
+<p>通常需要<strong>调用wait()等待函数使父进程等待子进程结束</strong>，否则子进程会进入**僵尸(Zombie)**状态。</p>
 </li>
-<li><p>使用<code>man 2 wait</code>指令查看wait()函数原型：</p>
+<li>
+<p>使用<code>man 2 wait</code>指令查看wait()函数原型：</p>
 </li>
 </ul>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/wait.h&gt;</span></span></span><br><span class="line"><span class="type">pid_t</span> <span class="title function_">wait</span><span class="params">(<span class="type">int</span> *status)</span>;</span><br><span class="line"><span class="type">pid_t</span> <span class="title function_">waitpid</span><span class="params">(<span class="type">pid_t</span> pid, <span class="type">int</span> *status, <span class="type">int</span> options)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">waitid</span><span class="params">(<span class="type">idtype_t</span> idtype, <span class="type">id_t</span> id, <span class="type">siginfo_t</span> *infop, <span class="type">int</span> options)</span>;</span><br></pre></td></tr></table></figure>
@@ -367,7 +382,6 @@
 <li>在<strong>Linux系统中可以使用 kill _l 查看这些信号的具体情况、信号类型以及对应数字</strong>。</li>
 <li>上述代码用到了一些状态宏：</li>
 </ul>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -406,11 +420,9 @@
 </tr>
 </tbody>
 </table>
-</div>
 <ul>
-<li>除了<strong>wait()</strong>外还有<strong>waitpid()</strong>，其区别是：<strong>wait用于等待所有子进程结束，而waitpid用于特定pid进程</strong>。而<strong>waitpid</strong>中pid参数与实际控制的pid参数，有：</li>
+<li>除了<strong>wait()<strong>外还有</strong>waitpid()</strong>，其区别是：<strong>wait用于等待所有子进程结束，而waitpid用于特定pid进程</strong>。而<strong>waitpid</strong>中pid参数与实际控制的pid参数，有：</li>
 </ul>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -445,8 +457,8 @@
 </tr>
 </tbody>
 </table>
-</div>
-<h3 id="5-5-进程结束"><a href="#5-5-进程结束" class="headerlink" title="5.5 进程结束"></a>5.5 进程结束</h3><p>想终止和结束一个进程时，使用以下函数：</p>
+<h3 id="5-5-进程结束">5.5 进程结束</h3>
+<p>想终止和结束一个进程时，使用以下函数：</p>
 <ul>
 <li><strong>exit()：</strong></li>
 </ul>
@@ -461,21 +473,24 @@
 <li>尽量减少使用<strong>exit()终止子进程</strong>。</li>
 </ul>
 <hr>
-<h3 id="5-6-多个进程间的关系"><a href="#5-6-多个进程间的关系" class="headerlink" title="5.6 多个进程间的关系"></a>5.6 多个进程间的关系</h3><p>随着硬件的发展，很多系统都拥有多个处理器，Linux系统是一个支持多进程同时运行的系统，但是想要多个进程合理运行，需要注意。</p>
-<h4 id="5-6-1-进程组"><a href="#5-6-1-进程组" class="headerlink" title="5.6.1 进程组"></a>5.6.1 进程组</h4><p><strong>进程组</strong>：就是一个或多个进程的集合。</p>
+<h3 id="5-6-多个进程间的关系">5.6 多个进程间的关系</h3>
+<p>随着硬件的发展，很多系统都拥有多个处理器，Linux系统是一个支持多进程同时运行的系统，但是想要多个进程合理运行，需要注意。</p>
+<h4 id="5-6-1-进程组">5.6.1 进程组</h4>
+<p><strong>进程组</strong>：就是一个或多个进程的集合。</p>
 <ul>
 <li>在Linux系统中可以通过<strong>调用getpgrg()函数获取进程组ID</strong>，原型为：</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="type">pid_t</span> <span class="title function_">getpgrp</span><span class="params">(<span class="type">void</span>)</span>;	<span class="comment">// 返回该函数所在进程的进程组ID</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><strong>进程的生命周期</strong>：从创建进程到进程终止，进程组的生命周期：进程组的创立到进程组中最后一个进程终止。</li>
-<li>在Linux系统中，可以说使用<strong>setpgid()</strong>函数<strong>创建一个新的进程组或将一个进程加入到一个进程组中</strong>，其原型：</li>
+<li>在Linux系统中，可以说使用<strong>setpgid()<strong>函数</strong>创建一个新的进程组或将一个进程加入到一个进程组中</strong>，其原型：</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">setpgid</span><span class="params">(<span class="type">pid_t</span> pid,<span class="type">pid_t</span> pgid)</span>;	<span class="comment">// 当调用成功时，返回值为0，失败时为-1。</span></span><br></pre></td></tr></table></figure>
 <p>下面演示获取进程ID和获取进程组ID，以及创建一个新的进程组：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">    <span class="type">int</span> a;</span><br><span class="line">    <span class="type">pid_t</span> pgid,pid;</span><br><span class="line">    pid=(<span class="type">long</span>)getpid();</span><br><span class="line">    pgid=(<span class="type">long</span>)getpgrp();</span><br><span class="line">    a=setpgid(pid,pgid);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a=%d,pid=%ld,pgid=%ld\n&quot;</span>,a,pid,pgid);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
-<h4 id="5-6-1-时间片的分配"><a href="#5-6-1-时间片的分配" class="headerlink" title="5.6.1 时间片的分配"></a>5.6.1 时间片的分配</h4><p>我们学过单片机，知道很多单片机都是单线进行，那么对于一个CPU来说可以实现多进程同时运行吗？</p>
+<h4 id="5-6-1-时间片的分配">5.6.1 时间片的分配</h4>
+<p>我们学过单片机，知道很多单片机都是单线进行，那么对于一个CPU来说可以实现多进程同时运行吗？</p>
 <p>实则只是将多个进程进行时间切片，近似看做同时进行，那么，</p>
 <ul>
 <li><strong>时间片</strong>：每个进程<strong>都有其时间段</strong>，这个时间段称为进程的<strong>时间片</strong>。</li>
@@ -483,7 +498,8 @@
 <p>要想多个进程的时间片合理运行，则需要进行<strong>任务调度</strong>，时间片切换的调度策略有：</p>
 <ul>
 <li><strong>时间片轮转调度策略</strong>：遵循<strong>先来先得</strong>的原则运行，按顺序执行时间片。</li>
-<li><strong>优先权调度策略</strong>：有些进程需要优先处理，则引入<strong>优先权调度算法</strong>，其分为两种，<ul>
+<li><strong>优先权调度策略</strong>：有些进程需要优先处理，则引入<strong>优先权调度算法</strong>，其分为两种，
+<ul>
 <li>非抢占式优先权调度策略：将CPU<strong>分配给队列中优先权最高的进程</strong>，然后全速执行该进程。</li>
 <li>抢占式优先权调度策略：将CPU<strong>分配给当前优先级别最高的进程，每出现新的进程就进行比较</strong>。</li>
 </ul>
@@ -496,29 +512,35 @@
 <li><strong>nice()：用于改变进程的动态优先级。</strong></li>
 </ul>
 <hr>
-<h3 id="5-7-线程"><a href="#5-7-线程" class="headerlink" title="5.7 线程"></a>5.7 线程</h3><p>我们学习了进程，那么对于线程是什么呢？有：</p>
+<h3 id="5-7-线程">5.7 线程</h3>
+<p>我们学习了进程，那么对于线程是什么呢？有：</p>
 <ol>
-<li><strong>定义</strong>：<ul>
+<li><strong>定义</strong>：
+<ul>
 <li>进程：<strong>进程是计算机中运行中的程序的实例</strong>。它是程序的执行过程，包括程序、数据和进程控制块等资源的集合。</li>
 <li>线程：<strong>线程是进程内的一个执行单元</strong>，也称为轻量级进程。一个进程可以包含多个线程，这些线程<strong>共享进程的资源</strong>。</li>
 </ul>
 </li>
-<li><strong>资源占用</strong>：<ul>
+<li><strong>资源占用</strong>：
+<ul>
 <li>进程：每个进程都拥有独立的内存空间、文件描述符、堆栈等资源。进程之间的通信需要使用特定的机制，比如管道、消息队列等。</li>
 <li>线程：<strong>线程是在进程内部运行的，它们共享相同的内存空间和其他资源</strong>，比如文件描述符、堆栈等。因此，<strong>线程之间的通信更为简单，可以直接访问共享的内存</strong>。</li>
 </ul>
 </li>
-<li><strong>切换开销</strong>：<ul>
+<li><strong>切换开销</strong>：
+<ul>
 <li>进程：由于每个进程拥有独立的内存空间，<strong>进程切换的开销相对较大，涉及到切换页表、刷新 CPU 寄存器等操作，因此效率较低</strong>。</li>
 <li>线程：<strong>线程切换的开销比进程小得多，因为它们共享相同的地址空间和其他资源，只需要切换线程的上下文即可</strong>。</li>
 </ul>
 </li>
-<li><strong>并发性和并行性</strong>：<ul>
+<li><strong>并发性和并行性</strong>：
+<ul>
 <li>进程：由于进程之间拥有独立的内存空间，因此<strong>进程之间的并发性较高，但是实现并行需要多个处理器</strong>。</li>
 <li>线程：<strong>线程可以在同一进程内并发执行，共享相同的资源，因此线程的并发性比进程更高。在多核处理器上，线程可以实现真正的并行执行</strong>。</li>
 </ul>
 </li>
-<li><strong>稳定性</strong>：<ul>
+<li><strong>稳定性</strong>：
+<ul>
 <li>进程：一个进程的崩溃通常不会影响其他进程，因为它们拥有独立的地址空间。</li>
 <li>线程：<strong>一个线程的崩溃可能会导致整个进程的崩溃，因为它们共享相同的资源</strong>。</li>
 </ul>
@@ -527,7 +549,8 @@
 <ul>
 <li>总之：<strong>进程适合于执行独立任务或者需要较高隔离性的情况，而线程适合于需要共享资源并且需要更高并发性的情况</strong>。</li>
 </ul>
-<h4 id="5-7-1-线程属性"><a href="#5-7-1-线程属性" class="headerlink" title="5.7.1 线程属性"></a>5.7.1 线程属性</h4><p>同样的，我们要使用线程，就必须知道其<strong>属性</strong>，基于Linux系统，学习相关属性函数对线程进行操作。</p>
+<h4 id="5-7-1-线程属性">5.7.1 线程属性</h4>
+<p>同样的，我们要使用线程，就必须知道其<strong>属性</strong>，基于Linux系统，学习相关属性函数对线程进行操作。</p>
 <ul>
 <li>例如<strong>线程属性结构体</strong>：</li>
 </ul>
@@ -544,7 +567,8 @@
 <li><code>scope</code>：表示线程的作用域，取<strong>PTHREAD_SCOPE_SYSTEM</strong>时，表明每个线程占用一个系统时间片。</li>
 </ul>
 <hr>
-<h4 id="5-7-2-初始化属性对象"><a href="#5-7-2-初始化属性对象" class="headerlink" title="5.7.2 初始化属性对象"></a>5.7.2 初始化属性对象</h4><p>当需要使用一个线程的属性对象前，需要首先初始化该对象，<strong>初始化线程属性的函数为：</strong></p>
+<h4 id="5-7-2-初始化属性对象">5.7.2 初始化属性对象</h4>
+<p>当需要使用一个线程的属性对象前，需要首先初始化该对象，<strong>初始化线程属性的函数为：</strong></p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">pthread_attr_init</span><span class="params">(<span class="type">pthread_attr_t</span> *attr)</span>;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>调用成功返回0，失败为非0值，</li>
@@ -555,14 +579,16 @@
 <li>该函数作用就是摧毁**attr指向的线程属性对象。</li>
 </ul>
 <hr>
-<h4 id="5-7-3-设置线程状态"><a href="#5-7-3-设置线程状态" class="headerlink" title="5.7.3 设置线程状态"></a>5.7.3 设置线程状态</h4><p>线程的<strong>分离状态决定了线程是如何结束的</strong>，默认状态是可连接状态，这样<strong>线程在进程没有退出之前不会释放线程所占用的资源</strong>，可以调用<strong>pthread_join()函数</strong>来等待其它线程的结束，这样线程结束后会自动释放掉自身所占资源。</p>
+<h4 id="5-7-3-设置线程状态">5.7.3 设置线程状态</h4>
+<p>线程的<strong>分离状态决定了线程是如何结束的</strong>，默认状态是可连接状态，这样<strong>线程在进程没有退出之前不会释放线程所占用的资源</strong>，可以调用<strong>pthread_join()函数</strong>来等待其它线程的结束，这样线程结束后会自动释放掉自身所占资源。</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">pthread_attr_setdetachstate</span><span class="params">(<span class="type">pthread_attr_t</span>* attr,<span class="type">int</span> detachstate)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">pthread_attr_getdetachstate</span><span class="params">(<span class="type">pthread_attr_t</span>* attr,<span class="type">int</span> detachstate)</span>;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><code>attr</code>：用于设置线程属性的参数，指向要设置的线程属性对象；作为获取线程属性的参数，<strong>attr</strong>为获取的属性信息。</li>
 <li><code>detachstate</code>：同理。</li>
 </ul>
 <hr>
-<h4 id="5-7-4-设置调度策略"><a href="#5-7-4-设置调度策略" class="headerlink" title="5.7.4 设置调度策略"></a>5.7.4 设置调度策略</h4><p>上文中介绍到的三种调度策略：<strong>SCHED_OTHER、SCHED_RR、SCHED_FIFO</strong>。</p>
+<h4 id="5-7-4-设置调度策略">5.7.4 设置调度策略</h4>
+<p>上文中介绍到的三种调度策略：<strong>SCHED_OTHER、SCHED_RR、SCHED_FIFO</strong>。</p>
 <p>然后使用以下函数进行设置和修改，</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">pthread_attr_setschedpolicy</span><span class="params">(<span class="type">pthread_attr_t</span>* attr,<span class="type">int</span> policy)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">pthread_attr_setschedpolicy</span><span class="params">(<span class="type">pthread_attr_t</span>* attr,<span class="type">int</span> policy)</span>;</span><br></pre></td></tr></table></figure>
 <ul>
@@ -576,7 +602,8 @@
 </ul>
 <p><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/LitN/image-20240510141928028.png" alt="image-20240510141928028"></p>
 <hr>
-<h4 id="5-7-5-设置进程标识"><a href="#5-7-5-设置进程标识" class="headerlink" title="5.7.5 设置进程标识"></a>5.7.5 设置进程标识</h4><p>对于用户ID的设置：</p>
+<h4 id="5-7-5-设置进程标识">5.7.5 设置进程标识</h4>
+<p>对于用户ID的设置：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">setuid</span><span class="params">(<span class="type">uid_t</span> uid)</span>;	<span class="comment">// 修改当前进程用户标识，调用成功返回0，否则-1</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">setgid</span><span class="params">(<span class="type">gid_t</span> uid)</span>;	<span class="comment">// 设置当前进程的有效用户组标识，成功返回0，否则-1</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><code>setuid(uid_t uid)</code>：如果<strong>传递时普通用户的用户标识，会成功将参数UID赋给进程UID；而使用管理员的UID作为参数，该函数会检查调用的有效用户ID，如果确定为管理员UID，则所有与用户进程有关的ID都会被设置为参数uid值</strong>。</li>
@@ -594,21 +621,24 @@
 <p>结果：</p>
 <p><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/LitN/image-20240510164717763.png" alt="image-20240510164717763"></p>
 <ul>
-<li>练习2：使用<code>execl()</code>代替一个hello.c文件，在hello.c中实现”Hello world!”。</li>
+<li>练习2：使用<code>execl()</code>代替一个hello.c文件，在hello.c中实现&quot;Hello world!&quot;。</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*execl_test.c文件*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/wait.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">char</span> **environ;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;下面创建一个子进程：\n&quot;</span>);</span><br><span class="line">    execl(<span class="string">&quot;./hello&quot;</span>,<span class="string">&quot;hello&quot;</span>,<span class="literal">NULL</span>);	<span class="comment">// 打开hello文件</span></span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,<span class="string">&quot;execvel函数使用错误。\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*hello.c文件*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/wait.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello world!\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>结果：</p>
 <p><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/LitN/image-20240510192320703.png" alt="image-20240510192320703"></p>
 <hr>
-<h2 id="6-进程间通讯"><a href="#6-进程间通讯" class="headerlink" title="6. 进程间通讯"></a>6. 进程间通讯</h2><p><strong>进程间通讯</strong>：<strong>Inter-Process Communication（IPC）</strong>，多个进程间传递或交换信息。</p>
+<h2 id="6-进程间通讯">6. 进程间通讯</h2>
+<p><strong>进程间通讯</strong>：<strong>Inter-Process Communication（IPC）</strong>，多个进程间传递或交换信息。</p>
 <ul>
 <li><strong>进程与进程相互独立，互相传递信息，则需要在内核中开辟一块缓冲区域</strong>，在内核实现进程间的通讯。</li>
 <li>进程通讯包括：<strong>管道通讯、共享内存通讯、信号量通讯、消息队列通讯、套接口通讯（SOCKET）和全双工管道通信</strong>。</li>
 <li>除了支持信号和管道外，还支持SYSV(System V)子系统中的进程间通讯机制，在该机制下，包括：<strong>共享内存、信号量、消息队列通信</strong>。</li>
 </ul>
 <hr>
-<h3 id="6-1-管道"><a href="#6-1-管道" class="headerlink" title="6.1 管道"></a>6.1 管道</h3><p>管道：<strong>主要用于父子或兄弟进程间的数据读写</strong>。</p>
-<h4 id="6-1-1-管道定义"><a href="#6-1-1-管道定义" class="headerlink" title="6.1.1 管道定义"></a>6.1.1 管道定义</h4><ol>
+<h3 id="6-1-管道">6.1 管道</h3>
+<p>管道：<strong>主要用于父子或兄弟进程间的数据读写</strong>。</p>
+<h4 id="6-1-1-管道定义">6.1.1 管道定义</h4>
+<ol>
 <li>管道的定义：数据只能朝一个方向传播，<strong>不能同时出现两个方向</strong>，这跟单片机通讯中的<strong>半双工模式类似，一边读，一边写</strong>，但是有些UNIX系统中，<strong>管道支持全双工通讯</strong>。</li>
 <li>管道的创建和关闭：</li>
 </ol>
@@ -619,7 +649,8 @@
 <li>对<strong>管道的读写：read()、write()，关闭使用close()</strong>。</li>
 </ul>
 <hr>
-<h4 id="6-1-2-管道通讯"><a href="#6-1-2-管道通讯" class="headerlink" title="6.1.2 管道通讯"></a>6.1.2 管道通讯</h4><p>pipe函数<strong>只允许有联系的进程进行通讯</strong>。</p>
+<h4 id="6-1-2-管道通讯">6.1.2 管道通讯</h4>
+<p>pipe函数<strong>只允许有联系的进程进行通讯</strong>。</p>
 <p>管道通讯原理：</p>
 <ol>
 <li><strong>在父进程调用pipe()函数，父进程生成filedes[0]读和filedes[1]写。</strong></li>
@@ -632,7 +663,7 @@
 <p>根据我的实验：</p>
 <ul>
 <li><strong>write()函数</strong>：发送数据后，并不会显示在终端，<strong>需要自己打印</strong>。</li>
-<li>有一个<strong><em>巨坑！！！</em></strong>，上述代码输出：</li>
+<li>有一个<em><strong>巨坑！！！</strong></em>，上述代码输出：</li>
 </ul>
 <p><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/LitN/image-20240510215750468.png" alt="image-20240510215750468"></p>
 <p><strong>没错，是不是怪怪的，打印顺序错了…</strong>，聪明的你能想到为什么吗？</p>
@@ -645,13 +676,15 @@
 <p><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/LitN/image-20240510221019586.png" alt="image-20240510221019586"></p>
 <p>双向通讯：<strong>使用两个管道</strong>。</p>
 <hr>
-<h3 id="6-2-命名管道"><a href="#6-2-命名管道" class="headerlink" title="6.2 命名管道"></a>6.2 命名管道</h3><p><strong>命名管道解决的是没有关系的进程间通讯</strong>。</p>
+<h3 id="6-2-命名管道">6.2 命名管道</h3>
+<p><strong>命名管道解决的是没有关系的进程间通讯</strong>。</p>
 <ul>
 <li>命名通常又称之为<strong>FIFO</strong>，遵循先进先出的原则，<strong>作为特殊的设备文件存在于文件系统中，在进程中可以使用open()和close()函数打开和关闭管道</strong>。</li>
 <li>区别：<strong>命名管道提供一个路径名，以特殊的设备文件形式存放在文件系统中，因此两个进程间可以通过访问该路径来建立联系，进行数据交换</strong>。</li>
 <li>有两种<strong>创建命名管道的方法：通过函数创建，通过终端命令</strong>。</li>
 </ul>
-<h4 id="6-2-1-终端创建命名管道"><a href="#6-2-1-终端创建命名管道" class="headerlink" title="6.2.1 终端创建命名管道"></a>6.2.1 终端创建命名管道</h4><p>在shell中输入<code>mknod</code>、<code>mkfifo</code>命令可以创建一个命令管道。</p>
+<h4 id="6-2-1-终端创建命名管道">6.2.1 终端创建命名管道</h4>
+<p>在shell中输入<code>mknod</code>、<code>mkfifo</code>命令可以创建一个命令管道。</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">mknod [选项]... 路径名称 类型	<span class="comment">// 参数p是指创建一个命名管道文件</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">mkfifo [选项] 名称	<span class="comment">// 建议使用mkfifo -help</span></span><br></pre></td></tr></table></figure>
 <p>可以看出mkfifo函数较为简单：</p>
@@ -675,18 +708,25 @@
 <li><strong>使用open()函数打开文件后，记得读写同步，否则要出现进程阻塞！</strong></li>
 </ul>
 <hr>
-<h3 id="6-3-共享内存"><a href="#6-3-共享内存" class="headerlink" title="6.3 共享内存"></a>6.3 共享内存</h3><h4 id="6-3-1-IPC对象"><a href="#6-3-1-IPC对象" class="headerlink" title="6.3.1 IPC对象"></a>6.3.1 IPC对象</h4><p><strong>管道和命名管道都是基于文件系统的通讯方式，而SYSV子系统的进程间通讯是基于系统内核的</strong>。</p>
+<h3 id="6-3-共享内存">6.3 共享内存</h3>
+<h4 id="6-3-1-IPC对象">6.3.1 IPC对象</h4>
+<p><strong>管道和命名管道都是基于文件系统的通讯方式，而SYSV子系统的进程间通讯是基于系统内核的</strong>。</p>
 <p><strong>共享内存、信号量和消息队列通常被称为IPC对象</strong>，每个对象都有唯一标识。</p>
 <ul>
-<li><strong>IPC标识符</strong>：唯一，通过传递IPC对象的标识符可以访问该对象。</li>
-<li><p><strong>IPC键</strong>：<strong>键是IPC对象的外部标识</strong>，由自己定义，多用于多个进程都访问一个特定的IPC对象，<strong>创建IPC对象时需指定键值，如果键值是公共的，则经过权限检查的都可以访问该IPC对象，如果该键私有，一般赋值为0，系统类型为系统定义的key_t类型。</strong></p>
+<li>
+<p><strong>IPC标识符</strong>：唯一，通过传递IPC对象的标识符可以访问该对象。</p>
 </li>
-<li><p><strong>IPC属性</strong>：查看<sys/ipc.h>，或者在shell中输入，<code>man ipc.h</code>。</p>
+<li>
+<p><strong>IPC键</strong>：<strong>键是IPC对象的外部标识</strong>，由自己定义，多用于多个进程都访问一个特定的IPC对象，<strong>创建IPC对象时需指定键值，如果键值是公共的，则经过权限检查的都可以访问该IPC对象，如果该键私有，一般赋值为0，系统类型为系统定义的key_t类型。</strong></p>
+</li>
+<li>
+<p><strong>IPC属性</strong>：查看&lt;sys/ipc.h&gt;，或者在shell中输入，<code>man ipc.h</code>。</p>
 </li>
 </ul>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ipc_perm</span>&#123;</span></span><br><span class="line">    <span class="type">uid_t</span> uid;	<span class="comment">// 拥有者的有效用户ID</span></span><br><span class="line">    <span class="type">gid_t</span> gid;	<span class="comment">// 拥有者的有效组ID</span></span><br><span class="line">    <span class="type">uid_t</span> cuid;	<span class="comment">// 创建者的有效用户ID</span></span><br><span class="line">    <span class="type">gid_t</span> cgid;	<span class="comment">// 创建者的有效组ID</span></span><br><span class="line">    <span class="type">mode_t</span> mode;	<span class="comment">// 访问权限</span></span><br><span class="line">&#125;；</span><br></pre></td></tr></table></figure>
 <ul>
-<li><strong>IPC命令</strong>，<ul>
+<li><strong>IPC命令</strong>，
+<ul>
 <li>ipcs：查看ipc对象信息，有共享内存、消息队列、信号量。带参数：q 消息队列；s 信号量；m 共享内存信息。</li>
 <li>ipcrm：用于删除指定的ipc信息，用法如下：</li>
 </ul>
@@ -694,7 +734,8 @@
 </ul>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">ipcrm -m shmid	<span class="comment">// 删除值为shmid的共享内存消息</span></span><br><span class="line">ipcrm -q msqid	<span class="comment">// 删除值为msqid的消息队列信息</span></span><br><span class="line">ipcrm -s semid	<span class="comment">// 删除值为semid的信号量信息</span></span><br><span class="line">ipcrm -M shmkey <span class="comment">// 删除键值为shkey的共享内存消息</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <hr>
-<h4 id="6-3-2-共享内存相关操作"><a href="#6-3-2-共享内存相关操作" class="headerlink" title="6.3.2 共享内存相关操作"></a>6.3.2 共享内存相关操作</h4><p>共享内存所实现的进程间通讯是最快速的，但当多个进程读取同一内存时，易数据混乱。</p>
+<h4 id="6-3-2-共享内存相关操作">6.3.2 共享内存相关操作</h4>
+<p>共享内存所实现的进程间通讯是最快速的，但当多个进程读取同一内存时，易数据混乱。</p>
 <ul>
 <li>使用共享内存时<strong>注意进程间同步，即要用到信号量</strong>。</li>
 <li>每个共享内存的对象都有其指定的定义类型，如：</li>
@@ -717,7 +758,6 @@
 <li><strong>shmctl()</strong>：详情见<code>man shmct</code>，</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 通过cmd指令对shmid提供的标识符指定的共享区域进行多种控制</span></span><br><span class="line"><span class="comment">* buf是一个指向shmid_ds结构体类型的指针</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">shmctl</span><span class="params">(<span class="type">int</span> shmid,<span class="type">int</span> cmd,<span class="keyword">struct</span> shmid_ds *buf)</span>;	<span class="comment">// 对shmid提供的标识符指定的共享内存区域进行控制</span></span><br></pre></td></tr></table></figure>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -756,45 +796,9 @@
 </tr>
 </tbody>
 </table>
-</div>
 <p>说了这么多，其实感觉就是废话，看代码吧：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/ipc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/shm.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> shmid;	<span class="comment">// 定义IPC对象标识符</span></span><br><span class="line">	<span class="type">int</span> proj_id;	<span class="comment">// </span></span><br><span class="line">	<span class="type">key_t</span> key;	<span class="comment">// IPC键值</span></span><br><span class="line">	<span class="type">int</span> size;	<span class="comment">// 共享区域大小</span></span><br><span class="line">	<span class="type">char</span> *addr;	<span class="comment">// 地址</span></span><br><span class="line">	<span class="type">pid_t</span> pid;	<span class="comment">// 进程id</span></span><br><span class="line">	key=IPC_PRIVATE;	<span class="comment">// 键值取这个值，shmflg会自动取IPC_CREAT，自动创建新的共享内存区域</span></span><br><span class="line">	shmid=shmget(key,<span class="number">1024</span>,IPC_CREAT|<span class="number">0660</span>);</span><br><span class="line">	<span class="keyword">if</span>(shmid==<span class="number">-1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		perror(<span class="string">&quot;create share memory failed!&quot;</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	addr=(<span class="type">char</span>*)shmat(shmid,<span class="literal">NULL</span>,<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span>(addr==(<span class="type">char</span> *)(<span class="number">-1</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		perror(<span class="string">&quot;cannot attach!&quot;</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;share memory segment&#x27;s address:%x\n&quot;</span>,addr);</span><br><span class="line">	<span class="built_in">strcpy</span>(addr,<span class="string">&quot;welcome to mrsoft!&quot;</span>);</span><br><span class="line">	pid=fork();</span><br><span class="line">	<span class="keyword">if</span>(pid==<span class="number">-1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		perror(<span class="string">&quot;error!!!!&quot;</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(pid==<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;child process string is&#x27; %s&#x27;\n&quot;</span>,addr);</span><br><span class="line">		_exit(<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		wait(<span class="literal">NULL</span>);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;parent process string is &#x27;%s&#x27;\n&quot;</span>,addr);</span><br><span class="line">		<span class="keyword">if</span>(shmdt(addr)==<span class="number">-1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			perror(<span class="string">&quot;release failed!&quot;</span>);</span><br><span class="line">			<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(shmctl(shmid,IPC_RMID,<span class="literal">NULL</span>)==<span class="number">-1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			perror(<span class="string">&quot;failed!&quot;</span>);</span><br><span class="line">			<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://lancit.top">lancit</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://lancit.top">https://lancit.top</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">此文章版权归lancit所有，如有转载，请注明来自原作者。</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/linuxC/">linuxC</a></div><div class="post_share"><div class="social-share" data-image="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/linuxc2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/04/20/LinuxC%20%E5%9F%BA%E7%A1%80%E7%AF%87/" title="LinuxC 基础篇"><img class="cover" src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/linuxc1.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">LinuxC 基础篇</div></div></a></div><div class="next-post pull-right"><a href="/2024/05/07/PySerial%E7%9A%84%E4%BD%BF%E7%94%A8/" title="PySerial的使用"><img class="cover" src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/pyserial.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">PySerial的使用</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/04/20/LinuxC%20%E5%9F%BA%E7%A1%80%E7%AF%87/" title="LinuxC 基础篇"><img class="cover" src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/linuxc1.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-20</div><div class="title">LinuxC 基础篇</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/theme_img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">lancit</div><div class="author-info__description">车马很慢，阳光很暖。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/lancitx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/lancitx" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ukio169@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">天道酬勤，欢迎志同道合的友友~ <img style="max-width:100%;overflow:hidden;" src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/an_img/sunny.gif" alt=""></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#LinuxC-%E6%8F%90%E9%AB%98%E7%AF%87"><span class="toc-text">LinuxC 提高篇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-linux%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="toc-text">5. linux进程控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E5%88%9B%E5%BB%BA%E8%BF%9B%E7%A8%8B"><span class="toc-text">5.1 创建进程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-1-fork-%E8%AF%A6%E8%A7%A3"><span class="toc-text">5.1.1 fork() 详解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-2-vfork-%E8%AF%A6%E8%A7%A3"><span class="toc-text">5.1.2 vfork() 详解</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E7%BC%96%E8%BE%91%E8%BF%9B%E7%A8%8B"><span class="toc-text">5.3 编辑进程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-1-execve"><span class="toc-text">5.3.1 execve()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-2-execlp"><span class="toc-text">5.3.2 execlp()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-%E8%BF%9B%E7%A8%8B%E7%AD%89%E5%BE%85"><span class="toc-text">5.4 进程等待</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-%E8%BF%9B%E7%A8%8B%E7%BB%93%E6%9D%9F"><span class="toc-text">5.5 进程结束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-6-%E5%A4%9A%E4%B8%AA%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-text">5.6 多个进程间的关系</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-6-1-%E8%BF%9B%E7%A8%8B%E7%BB%84"><span class="toc-text">5.6.1 进程组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-6-1-%E6%97%B6%E9%97%B4%E7%89%87%E7%9A%84%E5%88%86%E9%85%8D"><span class="toc-text">5.6.1 时间片的分配</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-7-%E7%BA%BF%E7%A8%8B"><span class="toc-text">5.7 线程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-7-1-%E7%BA%BF%E7%A8%8B%E5%B1%9E%E6%80%A7"><span class="toc-text">5.7.1 线程属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-7-2-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B1%9E%E6%80%A7%E5%AF%B9%E8%B1%A1"><span class="toc-text">5.7.2 初始化属性对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-7-3-%E8%AE%BE%E7%BD%AE%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81"><span class="toc-text">5.7.3 设置线程状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-7-4-%E8%AE%BE%E7%BD%AE%E8%B0%83%E5%BA%A6%E7%AD%96%E7%95%A5"><span class="toc-text">5.7.4 设置调度策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-7-5-%E8%AE%BE%E7%BD%AE%E8%BF%9B%E7%A8%8B%E6%A0%87%E8%AF%86"><span class="toc-text">5.7.5 设置进程标识</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E8%AE%AF"><span class="toc-text">6. 进程间通讯</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E7%AE%A1%E9%81%93"><span class="toc-text">6.1 管道</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-1-%E7%AE%A1%E9%81%93%E5%AE%9A%E4%B9%89"><span class="toc-text">6.1.1 管道定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-2-%E7%AE%A1%E9%81%93%E9%80%9A%E8%AE%AF"><span class="toc-text">6.1.2 管道通讯</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E5%91%BD%E5%90%8D%E7%AE%A1%E9%81%93"><span class="toc-text">6.2 命名管道</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-1-%E7%BB%88%E7%AB%AF%E5%88%9B%E5%BB%BA%E5%91%BD%E5%90%8D%E7%AE%A1%E9%81%93"><span class="toc-text">6.2.1 终端创建命名管道</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98"><span class="toc-text">6.3 共享内存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-1-IPC%E5%AF%B9%E8%B1%A1"><span class="toc-text">6.3.1 IPC对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-2-%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C"><span class="toc-text">6.3.2 共享内存相关操作</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/06/16/%E3%80%8A%E7%8E%AB%E7%91%B0%E7%9A%84%E6%95%85%E4%BA%8B%E3%80%8B/" title="《玫瑰的故事》"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/LitN/rose.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《玫瑰的故事》"/></a><div class="content"><a class="title" href="/2024/06/16/%E3%80%8A%E7%8E%AB%E7%91%B0%E7%9A%84%E6%95%85%E4%BA%8B%E3%80%8B/" title="《玫瑰的故事》">《玫瑰的故事》</a><time datetime="2024-06-16T11:21:31.000Z" title="发表于 2024-06-16 19:21:31">2024-06-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/05/30/ROS%E6%8F%90%E9%AB%98%E7%AF%87/" title="ROS提高篇"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/ros1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ROS提高篇"/></a><div class="content"><a class="title" href="/2024/05/30/ROS%E6%8F%90%E9%AB%98%E7%AF%87/" title="ROS提高篇">ROS提高篇</a><time datetime="2024-05-30T12:28:02.000Z" title="发表于 2024-05-30 20:28:02">2024-05-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/05/28/PurePursuit%E7%AE%97%E6%B3%95/" title="PurePursuit算法"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/pursuit.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PurePursuit算法"/></a><div class="content"><a class="title" href="/2024/05/28/PurePursuit%E7%AE%97%E6%B3%95/" title="PurePursuit算法">PurePursuit算法</a><time datetime="2024-05-28T06:36:32.000Z" title="发表于 2024-05-28 14:36:32">2024-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/05/18/ROS%E5%9F%BA%E7%A1%80%E7%AF%87/" title="ROS基础篇"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/ros.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ROS基础篇"/></a><div class="content"><a class="title" href="/2024/05/18/ROS%E5%9F%BA%E7%A1%80%E7%AF%87/" title="ROS基础篇">ROS基础篇</a><time datetime="2024-05-18T07:33:14.000Z" title="发表于 2024-05-18 15:33:14">2024-05-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/05/08/Kalman%E6%BB%A4%E6%B3%A2%E8%AF%A6%E8%A7%A3/" title="Kalman滤波详解"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/kalman.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Kalman滤波详解"/></a><div class="content"><a class="title" href="/2024/05/08/Kalman%E6%BB%A4%E6%B3%A2%E8%AF%A6%E8%A7%A3/" title="Kalman滤波详解">Kalman滤波详解</a><time datetime="2024-05-08T14:42:49.000Z" title="发表于 2024-05-08 22:42:49">2024-05-08</time></div></div></div></div></div></div></main><footer id="footer" style="background: #87CEFA"><div id="footer-wrap"><div class="copyright">&copy;2024 By lancit</div><div class="footer_custom_text">书山有路勤为径，学海无涯苦作舟。</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
-  window.MathJax = {
-    tex: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']],
-      tags: 'ams'
-    },
-    chtml: {
-      scale: 1.1
-    },
-    options: {
-      renderActions: {
-        findScript: [10, doc => {
-          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
-            const display = !!node.type.match(/; *mode=display/)
-            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
-            const text = document.createTextNode('')
-            node.parentNode.replaceChild(text, node)
-            math.start = {node: text, delim: '', n: 0}
-            math.end = {node: text, delim: '', n: 0}
-            doc.math.push(math)
-          }
-        }, '']
-      }
-    }
-  }
-  
-  const script = document.createElement('script')
-  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
-  script.id = 'MathJax-script'
-  script.async = true
-  document.head.appendChild(script)
-} else {
-  MathJax.startup.document.state(0)
-  MathJax.texReset()
-  MathJax.typesetPromise()
-}</script><script>(() => {
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://lancit.top">lancit</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://lancit.top">https://lancit.top</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">此文章版权归lancit所有，如有转载，请注明来自原作者。</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/linuxC/">linuxC</a></div><div class="post_share"><div class="social-share" data-image="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/linuxc2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/04/20/LinuxC%20%E5%9F%BA%E7%A1%80%E7%AF%87/" title="LinuxC 基础篇"><img class="cover" src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/linuxc1.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">LinuxC 基础篇</div></div></a></div><div class="next-post pull-right"><a href="/2024/05/07/PySerial%E7%9A%84%E4%BD%BF%E7%94%A8/" title="PySerial的使用"><img class="cover" src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/pyserial.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">PySerial的使用</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/04/20/LinuxC%20%E5%9F%BA%E7%A1%80%E7%AF%87/" title="LinuxC 基础篇"><img class="cover" src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/linuxc1.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-20</div><div class="title">LinuxC 基础篇</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/theme_img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">lancit</div><div class="author-info__description">车马很慢，阳光很暖。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/lancitx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/lancitx" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ukio169@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">天道酬勤，欢迎志同道合的友友~ <img style="max-width:100%;overflow:hidden;" src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/an_img/sunny.gif" alt=""></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#LinuxC-%E6%8F%90%E9%AB%98%E7%AF%87"><span class="toc-text">LinuxC 提高篇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-linux%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="toc-text">5. linux进程控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E5%88%9B%E5%BB%BA%E8%BF%9B%E7%A8%8B"><span class="toc-text">5.1 创建进程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-1-fork-%E8%AF%A6%E8%A7%A3"><span class="toc-text">5.1.1 fork() 详解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-2-vfork-%E8%AF%A6%E8%A7%A3"><span class="toc-text">5.1.2 vfork() 详解</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E7%BC%96%E8%BE%91%E8%BF%9B%E7%A8%8B"><span class="toc-text">5.3 编辑进程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-1-execve"><span class="toc-text">5.3.1 execve()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-2-execlp"><span class="toc-text">5.3.2 execlp()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-%E8%BF%9B%E7%A8%8B%E7%AD%89%E5%BE%85"><span class="toc-text">5.4 进程等待</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-%E8%BF%9B%E7%A8%8B%E7%BB%93%E6%9D%9F"><span class="toc-text">5.5 进程结束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-6-%E5%A4%9A%E4%B8%AA%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-text">5.6 多个进程间的关系</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-6-1-%E8%BF%9B%E7%A8%8B%E7%BB%84"><span class="toc-text">5.6.1 进程组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-6-1-%E6%97%B6%E9%97%B4%E7%89%87%E7%9A%84%E5%88%86%E9%85%8D"><span class="toc-text">5.6.1 时间片的分配</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-7-%E7%BA%BF%E7%A8%8B"><span class="toc-text">5.7 线程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-7-1-%E7%BA%BF%E7%A8%8B%E5%B1%9E%E6%80%A7"><span class="toc-text">5.7.1 线程属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-7-2-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B1%9E%E6%80%A7%E5%AF%B9%E8%B1%A1"><span class="toc-text">5.7.2 初始化属性对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-7-3-%E8%AE%BE%E7%BD%AE%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81"><span class="toc-text">5.7.3 设置线程状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-7-4-%E8%AE%BE%E7%BD%AE%E8%B0%83%E5%BA%A6%E7%AD%96%E7%95%A5"><span class="toc-text">5.7.4 设置调度策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-7-5-%E8%AE%BE%E7%BD%AE%E8%BF%9B%E7%A8%8B%E6%A0%87%E8%AF%86"><span class="toc-text">5.7.5 设置进程标识</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E8%AE%AF"><span class="toc-text">6. 进程间通讯</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E7%AE%A1%E9%81%93"><span class="toc-text">6.1 管道</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-1-%E7%AE%A1%E9%81%93%E5%AE%9A%E4%B9%89"><span class="toc-text">6.1.1 管道定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-2-%E7%AE%A1%E9%81%93%E9%80%9A%E8%AE%AF"><span class="toc-text">6.1.2 管道通讯</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E5%91%BD%E5%90%8D%E7%AE%A1%E9%81%93"><span class="toc-text">6.2 命名管道</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-1-%E7%BB%88%E7%AB%AF%E5%88%9B%E5%BB%BA%E5%91%BD%E5%90%8D%E7%AE%A1%E9%81%93"><span class="toc-text">6.2.1 终端创建命名管道</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98"><span class="toc-text">6.3 共享内存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-1-IPC%E5%AF%B9%E8%B1%A1"><span class="toc-text">6.3.1 IPC对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-2-%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C"><span class="toc-text">6.3.2 共享内存相关操作</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/06/20/%E5%9F%BA%E4%BA%8EPCB%E7%9A%84%E8%AE%A1%E9%87%8F%E6%AF%94%E4%BE%8B%E6%BB%91%E5%8A%A8%E6%9D%A1%E8%AE%BE%E8%AE%A1/" title="基于PCB的计量比例滑动条设计"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/slider.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于PCB的计量比例滑动条设计"/></a><div class="content"><a class="title" href="/2024/06/20/%E5%9F%BA%E4%BA%8EPCB%E7%9A%84%E8%AE%A1%E9%87%8F%E6%AF%94%E4%BE%8B%E6%BB%91%E5%8A%A8%E6%9D%A1%E8%AE%BE%E8%AE%A1/" title="基于PCB的计量比例滑动条设计">基于PCB的计量比例滑动条设计</a><time datetime="2024-06-20T14:39:07.000Z" title="发表于 2024-06-20 22:39:07">2024-06-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/16/%E3%80%8A%E7%8E%AB%E7%91%B0%E7%9A%84%E6%95%85%E4%BA%8B%E3%80%8B/" title="《玫瑰的故事》"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/LitN/rose.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《玫瑰的故事》"/></a><div class="content"><a class="title" href="/2024/06/16/%E3%80%8A%E7%8E%AB%E7%91%B0%E7%9A%84%E6%95%85%E4%BA%8B%E3%80%8B/" title="《玫瑰的故事》">《玫瑰的故事》</a><time datetime="2024-06-16T11:21:31.000Z" title="发表于 2024-06-16 19:21:31">2024-06-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/05/30/ROS%E6%8F%90%E9%AB%98%E7%AF%87/" title="ROS提高篇"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/ros1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ROS提高篇"/></a><div class="content"><a class="title" href="/2024/05/30/ROS%E6%8F%90%E9%AB%98%E7%AF%87/" title="ROS提高篇">ROS提高篇</a><time datetime="2024-05-30T12:28:02.000Z" title="发表于 2024-05-30 20:28:02">2024-05-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/05/28/PurePursuit%E7%AE%97%E6%B3%95/" title="PurePursuit算法"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/pursuit.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PurePursuit算法"/></a><div class="content"><a class="title" href="/2024/05/28/PurePursuit%E7%AE%97%E6%B3%95/" title="PurePursuit算法">PurePursuit算法</a><time datetime="2024-05-28T06:36:32.000Z" title="发表于 2024-05-28 14:36:32">2024-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/05/18/ROS%E5%9F%BA%E7%A1%80%E7%AF%87/" title="ROS基础篇"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/ros.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ROS基础篇"/></a><div class="content"><a class="title" href="/2024/05/18/ROS%E5%9F%BA%E7%A1%80%E7%AF%87/" title="ROS基础篇">ROS基础篇</a><time datetime="2024-05-18T07:33:14.000Z" title="发表于 2024-05-18 15:33:14">2024-05-18</time></div></div></div></div></div></div></main><footer id="footer" style="background: #87CEFA"><div id="footer-wrap"><div class="copyright">&copy;2024 By lancit</div><div class="footer_custom_text">书山有路勤为径，学海无涯苦作舟。</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
   const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
   if ($mermaid.length === 0) return
   const runMermaid = () => {

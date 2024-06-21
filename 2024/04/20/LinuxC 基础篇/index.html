@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>LinuxC 基础篇 | lancit の blog</title><meta name="author" content="lancit"><meta name="copyright" content="lancit"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Linux C Linux系统是基于C语言的一种类UNIX系统，其发布遵循GPL协议。 Linux内核是系统的核心程序文件，其主要包括：中断服务程序、调度程序、内存管理程序、网络和进程间通讯等程序构成。 Linux保留了UNIX的大多数特点：支持动态加载内核模块、支持对称多处理机制、不区分线程和其他一般进程。 本文章主要讲解如何在Linux环境下进行C语言程序设计。  1. C语言基础下面介绍的C">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>LinuxC 基础篇 | lancit の blog</title><meta name="author" content="lancit"><meta name="copyright" content="lancit"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Linux C  Linux系统是基于C语言的一种类UNIX系统，其发布遵循GPL协议。 Linux内核是系统的核心程序文件，其主要包括：中断服务程序、调度程序、内存管理程序、网络和进程间通讯等程序构成。 Linux保留了UNIX的大多数特点：支持动态加载内核模块、支持对称多处理机制、不区分线程和其他一般进程。 本文章主要讲解如何在Linux环境下进行C语言程序设计。  1. C语言基础 下面介绍">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LinuxC 基础篇">
 <meta property="og:url" content="http://example.com/2024/04/20/LinuxC%20%E5%9F%BA%E7%A1%80%E7%AF%87/index.html">
 <meta property="og:site_name" content="lancit の blog">
-<meta property="og:description" content="Linux C Linux系统是基于C语言的一种类UNIX系统，其发布遵循GPL协议。 Linux内核是系统的核心程序文件，其主要包括：中断服务程序、调度程序、内存管理程序、网络和进程间通讯等程序构成。 Linux保留了UNIX的大多数特点：支持动态加载内核模块、支持对称多处理机制、不区分线程和其他一般进程。 本文章主要讲解如何在Linux环境下进行C语言程序设计。  1. C语言基础下面介绍的C">
+<meta property="og:description" content="Linux C  Linux系统是基于C语言的一种类UNIX系统，其发布遵循GPL协议。 Linux内核是系统的核心程序文件，其主要包括：中断服务程序、调度程序、内存管理程序、网络和进程间通讯等程序构成。 Linux保留了UNIX的大多数特点：支持动态加载内核模块、支持对称多处理机制、不区分线程和其他一般进程。 本文章主要讲解如何在Linux环境下进行C语言程序设计。  1. C语言基础 下面介绍">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/linuxc1.png">
 <meta property="article:published_time" content="2024-04-20T12:10:40.000Z">
@@ -174,17 +174,20 @@
     document.addEventListener('pjax:send', () => { preloader.initLoading() })
     document.addEventListener('pjax:complete', () => { preloader.endLoading() })
   }
-})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/theme_img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-folder-open"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/linux/"><i class="fa-fw far fa-sad-cry"></i><span> LinuxC</span></a></li><li><a class="site-page child" href="/stm32/"><i class="fa-fw far fa-sad-tear"></i><span> STM32</span></a></li><li><a class="site-page child" href="/Hcircuit/"><i class="fa-fw far fa-meh"></i><span> Hcircuit</span></a></li><li><a class="site-page child" href="/other/"><i class="fa-fw far fa-kiss-wink-heart"></i><span> Other</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw far fa-user"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="lancit の blog"><img class="site-icon" src="/img/nav.svg"/><span class="site-name">lancit の blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-folder-open"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/linux/"><i class="fa-fw far fa-sad-cry"></i><span> LinuxC</span></a></li><li><a class="site-page child" href="/stm32/"><i class="fa-fw far fa-sad-tear"></i><span> STM32</span></a></li><li><a class="site-page child" href="/Hcircuit/"><i class="fa-fw far fa-meh"></i><span> Hcircuit</span></a></li><li><a class="site-page child" href="/other/"><i class="fa-fw far fa-kiss-wink-heart"></i><span> Other</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw far fa-user"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">LinuxC 基础篇</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-20T12:10:40.000Z" title="发表于 2024-04-20 20:10:40">2024-04-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-10T15:14:52.182Z" title="更新于 2024-05-10 23:14:52">2024-05-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/linux/">linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="LinuxC 基础篇"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="Linux-C"><a href="#Linux-C" class="headerlink" title="Linux C"></a>Linux C</h1><ul>
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/theme_img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-folder-open"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/linux/"><i class="fa-fw far fa-sad-cry"></i><span> LinuxC</span></a></li><li><a class="site-page child" href="/stm32/"><i class="fa-fw far fa-sad-tear"></i><span> STM32</span></a></li><li><a class="site-page child" href="/Hcircuit/"><i class="fa-fw far fa-meh"></i><span> Hcircuit</span></a></li><li><a class="site-page child" href="/other/"><i class="fa-fw far fa-kiss-wink-heart"></i><span> Other</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw far fa-user"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="lancit の blog"><img class="site-icon" src="/img/nav.svg"/><span class="site-name">lancit の blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-folder-open"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/linux/"><i class="fa-fw far fa-sad-cry"></i><span> LinuxC</span></a></li><li><a class="site-page child" href="/stm32/"><i class="fa-fw far fa-sad-tear"></i><span> STM32</span></a></li><li><a class="site-page child" href="/Hcircuit/"><i class="fa-fw far fa-meh"></i><span> Hcircuit</span></a></li><li><a class="site-page child" href="/other/"><i class="fa-fw far fa-kiss-wink-heart"></i><span> Other</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw far fa-user"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">LinuxC 基础篇</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-20T12:10:40.000Z" title="发表于 2024-04-20 20:10:40">2024-04-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-10T15:14:52.182Z" title="更新于 2024-05-10 23:14:52">2024-05-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/linux/">linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="LinuxC 基础篇"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1>Linux C</h1>
+<ul>
 <li>Linux系统是基于C语言的一种类UNIX系统，其发布遵循<strong>GPL协议</strong>。</li>
 <li>Linux内核是系统的核心程序文件，其主要包括：<strong>中断服务程序、调度程序、内存管理程序、网络和进程间通讯</strong>等程序构成。</li>
 <li>Linux保留了UNIX的大多数特点：<strong>支持动态加载内核模块、支持对称多处理机制、不区分线程和其他一般进程</strong>。</li>
 <li>本文章主要讲解如何在Linux环境下进行C语言程序设计。</li>
 </ul>
-<h2 id="1-C语言基础"><a href="#1-C语言基础" class="headerlink" title="1. C语言基础"></a>1. C语言基础</h2><p>下面介绍的C语言基础，是在有一定的基础上进行<strong>补充说明</strong>。</p>
-<h3 id="1-1-数据类型"><a href="#1-1-数据类型" class="headerlink" title="1.1 数据类型"></a>1.1 数据类型</h3><ul>
+<h2 id="1-C语言基础">1. C语言基础</h2>
+<p>下面介绍的C语言基础，是在有一定的基础上进行<strong>补充说明</strong>。</p>
+<h3 id="1-1-数据类型">1.1 数据类型</h3>
+<ul>
 <li>C语言的数据类型可以分为<strong>基本类型、构造类型、指针类型和空类型</strong>。</li>
 </ul>
-<h4 id="1-1-1-整型、实型、字符型"><a href="#1-1-1-整型、实型、字符型" class="headerlink" title="1.1.1 整型、实型、字符型"></a>1.1.1 整型、实型、字符型</h4><div class="table-container">
+<h4 id="1-1-1-整型、实型、字符型">1.1.1 整型、实型、字符型</h4>
 <table>
 <thead>
 <tr>
@@ -207,8 +210,8 @@
 </tr>
 </tbody>
 </table>
-</div>
-<h4 id="1-1-2-枚举类型"><a href="#1-1-2-枚举类型" class="headerlink" title="1.1.2 枚举类型"></a>1.1.2 枚举类型</h4><ul>
+<h4 id="1-1-2-枚举类型">1.1.2 枚举类型</h4>
+<ul>
 <li><strong>枚举类型</strong>：假设变量仅有几种可能的值，可将其定义为枚举类型。</li>
 <li>跟结构体一样，使用关键字<code>enum</code>声明一个枚举类型，再用该枚举类型声明定义变量，如：</li>
 </ul>
@@ -222,10 +225,10 @@
 </ul>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 当一个寄存器内容不太好记，可以使用枚举变量给每一位“起别名”。</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">IE</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    bit1,</span><br><span class="line">    bit2,</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">    IE[bit1] = <span class="number">0</span>;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
-<h4 id="1-1-3-构造类型"><a href="#1-1-3-构造类型" class="headerlink" title="1.1.3 构造类型"></a>1.1.3 构造类型</h4><ul>
+<h4 id="1-1-3-构造类型">1.1.3 构造类型</h4>
+<ul>
 <li>构造类型可以分为：<strong>数组类型、结构体类型、共用体类型</strong>。</li>
 </ul>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -248,23 +251,30 @@
 </tr>
 </tbody>
 </table>
-</div>
 <p>所谓的共用体类型就是：<strong>几个不同变量共用同一段内存的结构类型</strong>，成员的起始地址相同，故共用体的内存长度为其中<strong>最长成员长度</strong>。</p>
 <ul>
-<li><strong>最后一次赋值有效</strong>；</li>
-<li><strong>不能引用共用体变量</strong>，而只能引用共用体变量中的成员；</li>
-<li><p>不能对共用体变量名赋值，也不能企图引用变量名来得到一个值；</p>
+<li>
+<p><strong>最后一次赋值有效</strong>；</p>
 </li>
-<li><p>C99允许用共用体变量作为函数参数；</p>
+<li>
+<p><strong>不能引用共用体变量</strong>，而只能引用共用体变量中的成员；</p>
 </li>
-<li><p>共用体类型可以出现在结构体类型定义中，也可以定义共用体数组。反之，结构体也可以出现在共用体类型定义中，数组也可以作为共用体的成员。</p>
+<li>
+<p>不能对共用体变量名赋值，也不能企图引用变量名来得到一个值；</p>
+</li>
+<li>
+<p>C99允许用共用体变量作为函数参数；</p>
+</li>
+<li>
+<p>共用体类型可以出现在结构体类型定义中，也可以定义共用体数组。反之，结构体也可以出现在共用体类型定义中，数组也可以作为共用体的成员。</p>
 </li>
 </ul>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">Data</span>&#123;</span></span><br><span class="line">	<span class="type">int</span> i;</span><br><span class="line">    <span class="type">int</span> f;</span><br><span class="line">    <span class="type">int</span> d;</span><br><span class="line">	<span class="type">char</span>* ch;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="type">void</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">char</span> c=<span class="string">&#x27;x&#x27;</span>;</span><br><span class="line">    </span><br><span class="line">	<span class="class"><span class="keyword">union</span> <span class="title">Data</span> <span class="title">data</span>;</span></span><br><span class="line">	data.i = <span class="number">1</span>;</span><br><span class="line">	data.f= <span class="number">1.2</span>;</span><br><span class="line">	data.d = <span class="number">1.23</span>;	<span class="comment">//只能引用共用体变量中的成员，且同一时间只存在一个变量。</span></span><br><span class="line">    data.ch = &amp;c;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
-<h4 id="1-1-4-指针类型"><a href="#1-1-4-指针类型" class="headerlink" title="1.1.4 指针类型"></a>1.1.4 指针类型</h4><p>对于指针类型，</p>
+<h4 id="1-1-4-指针类型">1.1.4 指针类型</h4>
+<p>对于指针类型，</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> data,*point;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;data);</span><br><span class="line">point=&amp;data;</span><br><span class="line">*point--;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,point);</span><br></pre></td></tr></table></figure>
-<h3 id="1-2-运算符"><a href="#1-2-运算符" class="headerlink" title="1.2 运算符"></a>1.2 运算符</h3><div class="table-container">
+<h3 id="1-2-运算符">1.2 运算符</h3>
 <table>
 <thead>
 <tr>
@@ -274,7 +284,7 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">+、-、*、/、%、++、—、=</td>
+<td style="text-align:center">+、-、*、/、%、++、–、=</td>
 <td style="text-align:center">-</td>
 </tr>
 <tr>
@@ -282,19 +292,15 @@
 <td style="text-align:center">-</td>
 </tr>
 <tr>
-<td style="text-align:center">&amp;&amp;、\</td>
-<td style="text-align:center">\</td>
-<td>、!</td>
-<td>与或非</td>
+<td style="text-align:center">&amp;&amp;、||、!</td>
+<td style="text-align:center">与或非</td>
 </tr>
 <tr>
-<td style="text-align:center">&amp;、\</td>
-<td style="text-align:center">、^、~、&lt;&lt;、&gt;&gt;</td>
-<td>按位：与、或、异或、取反、左移、右移</td>
+<td style="text-align:center">&amp;、|、^、~、&lt;&lt;、&gt;&gt;</td>
+<td style="text-align:center">按位：与、或、异或、取反、左移、右移</td>
 </tr>
 </tbody>
 </table>
-</div>
 <p>其中，有些值得注意的细节：</p>
 <ul>
 <li>对整数中某些位进行位操作时，可使用位操作运算符，</li>
@@ -306,16 +312,20 @@
 <li><code>表达式1 ? 表达式2 : 表达式3</code>，三目运算符。</li>
 <li>sizeof运算符返回类型字节数，typedef类型声明符。</li>
 <li><strong>结构体取成员“.”、指向结构体的指针取成员-&gt;</strong>，这就涉及到了结构体和<strong>结构体指针</strong>的区别，结构体指针<strong>存储的是结构体的地址</strong>。</li>
-<li>而<strong>“.”</strong>运算针对的是结构体变量，而箭头运算符是针对的内存而言的，即<strong>像结构体指针这种动态分配地址的</strong>。</li>
+<li>而**&quot;.&quot;<strong>运算针对的是结构体变量，而箭头运算符是针对的内存而言的，即</strong>像结构体指针这种动态分配地址的**。</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span> &#123;</span></span><br><span class="line">    <span class="type">char</span> name[<span class="number">50</span>];</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="type">float</span> salary;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span> *<span class="title">ptrPerson</span>,<span class="title">person1</span>;</span></span><br><span class="line">ptrPerson = &amp;person1;</span><br><span class="line">ptrPerson-&gt;age = <span class="number">30</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="1-3-预处理命令"><a href="#1-3-预处理命令" class="headerlink" title="1.3 预处理命令"></a>1.3 预处理命令</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&quot;source.c&quot;</span>	<span class="comment">// 跨文件调用另一个文件，一般会将函数放于另一个文件中</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX 200	<span class="comment">// 宏定义</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 头文件格式</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span>...</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> HEADER_NAME_H__</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> HEADER_NAME_H__</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 头文件内容</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">// HEADER_NAME_H__</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="1-3-预处理命令">1.3 预处理命令</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&quot;source.c&quot;</span>	<span class="comment">// 跨文件调用另一个文件，一般会将函数放于另一个文件中</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX 200	<span class="comment">// 宏定义</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 头文件格式</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span>...</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> HEADER_NAME_H__</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> HEADER_NAME_H__</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 头文件内容</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">// HEADER_NAME_H__</span></span></span><br></pre></td></tr></table></figure>
 <hr>
-<h2 id="2-内存管理"><a href="#2-内存管理" class="headerlink" title="2. 内存管理"></a>2. 内存管理</h2><p>根据内存分配方式的不同，可将其分为：<strong>动态内存和静态内存</strong>。</p>
+<h2 id="2-内存管理">2. 内存管理</h2>
+<p>根据内存分配方式的不同，可将其分为：<strong>动态内存和静态内存</strong>。</p>
 <ul>
-<li><p><strong>动态内存</strong>：程序猿自行按需分配。</p>
+<li>
+<p><strong>动态内存</strong>：程序猿自行按需分配。</p>
 </li>
-<li><p><strong>静态内存</strong>：是由<strong>编译器分配的内存，其在编译时完成，不占用CPU资源，变量的释放和分配系统自行完成</strong>。</p>
+<li>
+<p><strong>静态内存</strong>：是由<strong>编译器分配的内存，其在编译时完成，不占用CPU资源，变量的释放和分配系统自行完成</strong>。</p>
 </li>
 </ul>
 <p>对于其区别：</p>
@@ -325,32 +335,38 @@
 <li>动态内存的使用需要指针和引用数据类型的支持，而静态内存不用。</li>
 <li>静态内存：计划分配，动态内存：按需分配。</li>
 </ul>
-<h3 id="2-1-内存操作"><a href="#2-1-内存操作" class="headerlink" title="2.1 内存操作"></a>2.1 内存操作</h3><h4 id="2-1-1-栈和堆"><a href="#2-1-1-栈和堆" class="headerlink" title="2.1.1 栈和堆"></a>2.1.1 栈和堆</h4><p>在计算机科学中，”栈”和”堆”是两种常用的内存分配方式，它们有以下区别：</p>
+<h3 id="2-1-内存操作">2.1 内存操作</h3>
+<h4 id="2-1-1-栈和堆">2.1.1 栈和堆</h4>
+<p>在计算机科学中，&quot;栈&quot;和&quot;堆&quot;是两种常用的内存分配方式，它们有以下区别：</p>
 <ol>
-<li><strong>分配方式</strong>：<ul>
+<li><strong>分配方式</strong>：
+<ul>
 <li><strong>栈（Stack）</strong>：栈是一种<strong>后进先出（LIFO）的数据结构，内存分配和释放是自动进行的，由编译器管理</strong>。当您在函数中声明一个局部变量时，它会被分配到栈上，并在函数结束时自动释放。因此，栈上的内存分配和释放是快速的。</li>
 <li><strong>堆（Heap）</strong>：堆是一种动态分配内存的方式，程序员<strong>手动分配和释放堆上的内存</strong>。堆上的内存分配和释放比栈上的操作更复杂，需要程序员来负责管理，包括内存的分配、使用和释放。</li>
 </ul>
 </li>
-<li><strong>内存管理</strong>：<ul>
+<li><strong>内存管理</strong>：
+<ul>
 <li><strong>栈</strong>：栈的<strong>大小通常固定</strong>，并由编译器提前确定。它通常用于存储函数的局部变量、函数调用和参数。栈上的内存分配和释放是自动的，编译器负责管理，因此不存在内存泄漏的风险。</li>
 <li><strong>堆</strong>：堆的<strong>大小不固定</strong>，并且可以动态增长或缩小。在堆上分配的内存由程序员手动分配和释放，因此需要注意避免内存泄漏和悬空指针。</li>
 </ul>
 </li>
-<li><strong>访问速度</strong>：<ul>
+<li><strong>访问速度</strong>：
+<ul>
 <li><strong>栈</strong>：由于栈上的内存分配和释放是由编译器自动管理的，因此<strong>栈上的操作通常比较快速</strong>。栈上的数据访问速度相对较快。</li>
 <li><strong>堆</strong>：堆上的内存分配和释放通常<strong>比栈上的操作慢</strong>，因为它需要更多的操作来管理动态分配的内存。因此，堆上的数据访问速度相对较慢。</li>
 </ul>
 </li>
-<li><strong>分配方式</strong>：<ul>
+<li><strong>分配方式</strong>：
+<ul>
 <li><strong>栈</strong>：栈上的<strong>内存分配是连续的</strong>，每个变量的大小都是固定的。栈的分配和释放遵循后进先出的原则，所以在栈上分配的内存是连续的且按照相反的顺序释放。</li>
 <li><strong>堆</strong>：堆上的<strong>内存分配是不连续的</strong>，大小不固定，由程序员在运行时手动控制。因此，堆上分配的内存可以是不连续的。</li>
 </ul>
 </li>
 </ol>
 <hr>
-<h4 id="2-1-2-分配和释放内存"><a href="#2-1-2-分配和释放内存" class="headerlink" title="2.1.2 分配和释放内存"></a>2.1.2 分配和释放内存</h4><p>可以通过以下函数实现动态内存的分配和释放：</p>
-<div class="table-container">
+<h4 id="2-1-2-分配和释放内存">2.1.2 分配和释放内存</h4>
+<p>可以通过以下函数实现动态内存的分配和释放：</p>
 <table>
 <thead>
 <tr>
@@ -365,7 +381,7 @@
 <td style="text-align:center"><strong>malloc()</strong></td>
 <td style="text-align:center">void *malloc(uint size)</td>
 <td style="text-align:center">分配有size个字节的内存块</td>
-<td style="text-align:center">分配成功，则返回开辟内存的指针，否则返回NULL，与<strong>free()</strong>配合使用。</td>
+<td style="text-align:center">分配成功，则返回开辟内存的指针，否则返回NULL，与**free()**配合使用。</td>
 </tr>
 <tr>
 <td style="text-align:center"><strong>calloc()</strong></td>
@@ -375,47 +391,52 @@
 </tr>
 <tr>
 <td style="text-align:center"><strong>realloc()</strong></td>
-<td style="text-align:center">void <em>raelloc(void </em>p, uint newsize)</td>
+<td style="text-align:center">void *raelloc(void *p, uint newsize)</td>
 <td style="text-align:center">调整<strong>p指针</strong>所指向内存大小为newsize个字节</td>
 <td style="text-align:center">有趣的是，当p为NULL，与malloc()类似，当newsize为0，则等于free()。</td>
 </tr>
 <tr>
 <td style="text-align:center"><strong>memset()</strong></td>
-<td style="text-align:center">void <em>memset(void </em>s,char ch,unsigned n)</td>
+<td style="text-align:center">void *memset(void *s,char ch,unsigned n)</td>
 <td style="text-align:center">设置字符串s中所有字节为ch，s数组大小为n</td>
 <td style="text-align:center">其实就是替换指针数组s中的字符，n代表字符数组的大小。</td>
 </tr>
 </tbody>
 </table>
-</div>
 <ul>
-<li>分配成功将返回分配内存的指针，否则返回NULL。</li>
-<li><p>需要使用<strong>free()</strong>函数释放内存空间。</p>
+<li>
+<p>分配成功将返回分配内存的指针，否则返回NULL。</p>
 </li>
-<li><p>特别的，如果在<strong>realloc()</strong>函数中<strong>newsize</strong>大小为0，则相当于<strong>free()</strong>函数，释放内存空间。</p>
+<li>
+<p>需要使用**free()**函数释放内存空间。</p>
+</li>
+<li>
+<p>特别的，如果在<strong>realloc()<strong>函数中</strong>newsize</strong>大小为0，则相当于**free()**函数，释放内存空间。</p>
 </li>
 </ul>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">char</span> *p;</span><br><span class="line">    p=(<span class="type">char</span> *)<span class="built_in">malloc</span>(<span class="number">100</span>);	<span class="comment">//对指针分配100个字节</span></span><br><span class="line">    <span class="keyword">if</span>(p)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Memory allocated at: %x&quot;</span>,p);	<span class="comment">// 将地址打印成十六进制</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Not enough.&quot;</span>);</span><br><span class="line">    getchar();</span><br><span class="line">    </span><br><span class="line">    p=(<span class="type">char</span> *)<span class="built_in">realloc</span>(p,<span class="number">256</span>);	<span class="comment">//调整p内存空间从100字节到256字节</span></span><br><span class="line">    <span class="keyword">if</span>(p)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Memory allocated at: %x&quot;</span>,p);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Not enough.&quot;</span>);</span><br><span class="line">    <span class="built_in">free</span>(p);	<span class="comment">//释放空间</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="2-2-链表"><a href="#2-2-链表" class="headerlink" title="2.2 链表"></a>2.2 链表</h3><p>假设使用动态内存分配的方式，实现保存多名学生的学号、年龄以及成绩，直到输入为0结束。</p>
+<h3 id="2-2-链表">2.2 链表</h3>
+<p>假设使用动态内存分配的方式，实现保存多名学生的学号、年龄以及成绩，直到输入为0结束。</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;malloc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LEN sizeof(struct student)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">student</span>&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">student</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;stu;	<span class="comment">//声明学生结构体及指向下一个成员。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*创建链表，输入学号为0截止*/</span></span><br><span class="line">stu *<span class="title function_">create</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">    stu *p,*temp,*head;</span><br><span class="line">    p=(stu *)<span class="built_in">malloc</span>(LEN);	<span class="comment">//分配内存空间</span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d,%d,%f&quot;</span>,&amp;p-&gt;num,&amp;p-&gt;age,&amp;p-&gt;score);	<span class="comment">//读取数据</span></span><br><span class="line">    head=p;</span><br><span class="line">    <span class="keyword">while</span>(p-&gt;num!=<span class="number">0</span>)&#123;</span><br><span class="line">        temp=(stu *)<span class="built_in">malloc</span>(LEN);	<span class="comment">//分配内存空间</span></span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d,%d,%f&quot;</span>,&amp;temp-&gt;num,&amp;temp-&gt;age,&amp;temp-&gt;score);	<span class="comment">//读取数据</span></span><br><span class="line">        p-&gt;next=temp;	<span class="comment">//将链表链接新创建的表</span></span><br><span class="line">        p=temp;	<span class="comment">//重定向新创建的表</span></span><br><span class="line">    &#125;</span><br><span class="line">    p-&gt;next=<span class="literal">NULL</span>;	<span class="comment">//到链表尾部</span></span><br><span class="line">    <span class="keyword">return</span>(head);	<span class="comment">//返回表头</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">    stu *table;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Enter the students&#x27;s message: \n&quot;</span>);</span><br><span class="line">    table=create();</span><br><span class="line">    <span class="keyword">if</span>(table!=<span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">do</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d,%d,%f\n&quot;</span>,table-&gt;num,table-&gt;age,table-&gt;score);</span><br><span class="line">            table=table-&gt;next;</span><br><span class="line">        &#125;<span class="keyword">while</span>(table!=<span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>值得注意的是：<strong>scanf（）</strong>函数，在<strong>格式字符串中存在非格式控制字符时</strong>，必须严格符合格式要求。</p>
+<p>值得注意的是：<strong>scanf（）<strong>函数，在</strong>格式字符串中存在非格式控制字符时</strong>，必须严格符合格式要求。</p>
 <ul>
 <li>例如，<code>scanf(&quot;%d,%d&quot;,&amp;a,&amp;b)</code>中，输入必须为<code>1,2</code>，否则将会导致读取异常。</li>
 </ul>
-<h2 id="3-Vim和Emacs"><a href="#3-Vim和Emacs" class="headerlink" title="3. Vim和Emacs"></a>3. Vim和Emacs</h2><h3 id="3-1-VIM"><a href="#3-1-VIM" class="headerlink" title="3.1 VIM"></a>3.1 VIM</h3><p>VIM作为Linux系统下自带的基本编辑器，具有彩色和高亮等特性。对于VIM的使用：</p>
+<h2 id="3-Vim和Emacs">3. Vim和Emacs</h2>
+<h3 id="3-1-VIM">3.1 VIM</h3>
+<p>VIM作为Linux系统下自带的基本编辑器，具有彩色和高亮等特性。对于VIM的使用：</p>
 <ul>
 <li>终端输入<strong>vim</strong>，进入编辑器中。</li>
 <li>退出<strong>vim</strong>，需要长按<strong>ESC</strong>键，输入<code>:</code>，再输入<code>q</code>，按下<strong>ENTER</strong>，即可退出。</li>
 </ul>
 <p>同时VIM具有三种模式：<strong>命令模式、编辑模式、底行模式</strong>。</p>
-<p><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/LniuxCimage-20240219114353799.png" alt="image-20240219114353799" style="zoom: 80%;" /></p>
+<img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/LniuxCimage-20240219114353799.png" alt="image-20240219114353799" style="zoom: 80%;" />
 <p>对于VIM<strong>命令行模式</strong>：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">复制：</span><br><span class="line">y    在使用v模式选定了某一块的时候，复制选定块到缓冲区用；</span><br><span class="line">yy   复制整行（nyy或者yny ，复制n行，n为数字）；</span><br><span class="line">y^   复制当前到行头的内容；</span><br><span class="line">y$   复制当前到行尾的内容；</span><br><span class="line">yw   复制一个word （nyw或者ynw，复制n个word，n为数字）；</span><br><span class="line">yG   复制至档尾（nyG或者ynG，复制到第n行，例如<span class="number">1</span>yG或者y1G，复制到档尾） </span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">删除：</span><br><span class="line">x	 删除光标指向的当前字符</span><br><span class="line">nx	 删除光标指向的前n个字符</span><br><span class="line">:<span class="number">1</span>,<span class="meta">#d 删除行1到行#的文字</span></span><br><span class="line">d    删除选定块到缓冲区；</span><br><span class="line">dd   删除整行</span><br><span class="line">d^   删除至行首</span><br><span class="line">d$   删除至行尾</span><br><span class="line">dw   删除至一个word</span><br><span class="line">dG   删除至文末 </span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">粘贴：</span><br><span class="line">p    小写p代表贴至游标后（下）</span><br><span class="line">P    大写P代表贴至游标前（上）</span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">常用：</span><br><span class="line">u    撤销</span><br><span class="line">.	 重复 </span><br><span class="line">ggVG 全选</span><br><span class="line">ggdG 全选删除</span><br></pre></td></tr></table></figure>
 <p>而对于VIM的<strong>底行模式</strong>：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -454,10 +475,14 @@
 </tr>
 </tbody>
 </table>
-</div>
-<h3 id="3-2-Emacs"><a href="#3-2-Emacs" class="headerlink" title="3.2 Emacs"></a>3.2 Emacs</h3><p>-</p>
-<h2 id="4-GCC编译器"><a href="#4-GCC编译器" class="headerlink" title="4. GCC编译器"></a>4. GCC编译器</h2><p><strong>GCC</strong>是GNU C Compiler的缩写，由于技术的发展，现在已经可以编译<strong>C、C++、Ada、Object C、Java</strong>等语言了。故现在又称之为GNU Compiler Collection，具有交叉编译的功能，即可以在一个平台上编译另一个平台的代码。</p>
-<h3 id="4-1-GCC指令"><a href="#4-1-GCC指令" class="headerlink" title="4.1 GCC指令"></a>4.1 GCC指令</h3><p><strong>gcc</strong>编译的基本用法：<code>gcc [options] [filenames]</code></p>
+<h3 id="3-2-Emacs">3.2 Emacs</h3>
+<ul>
+<li></li>
+</ul>
+<h2 id="4-GCC编译器">4. GCC编译器</h2>
+<p><strong>GCC</strong>是GNU C Compiler的缩写，由于技术的发展，现在已经可以编译<strong>C、C++、Ada、Object C、Java</strong>等语言了。故现在又称之为GNU Compiler Collection，具有交叉编译的功能，即可以在一个平台上编译另一个平台的代码。</p>
+<h3 id="4-1-GCC指令">4.1 GCC指令</h3>
+<p><strong>gcc</strong>编译的基本用法：<code>gcc [options] [filenames]</code></p>
 <ul>
 <li><code>-o output_filename</code>，确定输出文件名为outputfilename，这个名称不能和源文件同名。</li>
 <li><code>-c</code>，只编译，不链接成为可执行文件，只生成由C文件生成的目标文件，通常用于不包含主程序的<strong>子程序文件</strong>。</li>
@@ -474,7 +499,6 @@
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta"># gcc -Wall -Werror test.c -o test</span></span><br></pre></td></tr></table></figure>
 <p>建议在使用gcc指令时与<strong>Werror</strong>连用。</p>
 <p>GCC编译程序时，可以细分为：<strong>预处理、编译、汇编、链接</strong>。</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -501,20 +525,20 @@
 </tr>
 </tbody>
 </table>
-</div>
 <p>此外，除去GCC编译器外，还有一些其他的编译器：</p>
 <ul>
 <li><code>g++</code>，其使用的选项一样，但是是针对C++进行编译，保存其扩展名一般为：<strong>.cxx</strong> 。</li>
 <li><code>EGCS</code>：gcc的未来模样，但是现在已经gg了。</li>
 <li>F2C、P2C：代码转换器。</li>
 </ul>
-<h3 id="4-2-GDB调试"><a href="#4-2-GDB调试" class="headerlink" title="4.2 GDB调试"></a>4.2 GDB调试</h3><h4 id="4-2-1-gdb预处理"><a href="#4-2-1-gdb预处理" class="headerlink" title="4.2.1 gdb预处理"></a>4.2.1 gdb预处理</h4><p>GDB工具是通过<strong>bash</strong>命令行上实现的，要想使用GDB，<strong>必须在使用gcc编译时，附加上调试指令，使得生成文件包含调试信息</strong>。</p>
+<h3 id="4-2-GDB调试">4.2 GDB调试</h3>
+<h4 id="4-2-1-gdb预处理">4.2.1 gdb预处理</h4>
+<p>GDB工具是通过<strong>bash</strong>命令行上实现的，要想使用GDB，<strong>必须在使用gcc编译时，附加上调试指令，使得生成文件包含调试信息</strong>。</p>
 <p><strong>调试符号</strong>：<strong>调试符号是将源代码与可执3行文件相联系的桥梁</strong>，可用作源代码级的<strong>条好似、栈回溯、按名称显示变量</strong>等。</p>
 <p>gcc调试指令：</p>
 <ul>
 <li><code>-g</code>，可以在g后附加数字<strong>1、2、3</strong>来指定加入调试信息的多少，默认<code>-g2</code>。</li>
 </ul>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -537,20 +561,20 @@
 </tr>
 </tbody>
 </table>
-</div>
 <p>其中，<strong>回溯跟踪</strong>：监视程序在运行过程中的函数调用历史。<strong>堆栈转储</strong>：以十六进制保存程序执行环境的方法。</p>
 <ul>
 <li><code>-ggdb</code>，在生成的二进制代码中包含GDB专用的调试信息。</li>
 </ul>
 <p>如果在使用<strong>gcc</strong>编译时，未附加调试指令，再使用<code>gdb filename</code>，则有：</p>
-<p><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240220164239309.png" alt="image-20240220164239309" style="zoom: 80%;" /></p>
+<img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240220164239309.png" alt="image-20240220164239309" style="zoom: 80%;" />
 <p>而在编译时，使用了调试指令，则再用<code>gdb filename</code>，此时已经显示读取到调试符号，再键入<code>run</code>指令，则有：</p>
-<p><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240220164956729.png" alt="image-20240220164956729" style="zoom:80%;" /></p>
+<img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240220164956729.png" alt="image-20240220164956729" style="zoom:80%;" />
 <p>显然，此时程序错误为段错误（<code>scanf(&quot;%d&quot;,input);</code>），再使用<strong>回溯跟踪</strong><code>backtrace</code>（查看函数调用历史）。</p>
-<p><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240220165513388.png" alt="image-20240220165513388" style="zoom:80%;" /></p>
+<img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240220165513388.png" alt="image-20240220165513388" style="zoom:80%;" />
 <p>从<code>#2</code>错误可知，该问题出在crash.c文件中的第6句。</p>
 <p>此外，使用GDB打开带有调试信息的文件时，还可以先进入gdb环境，再使用<code>file 可执行文件名</code>。</p>
-<h4 id="4-2-2-gdb调试"><a href="#4-2-2-gdb调试" class="headerlink" title="4.2.2 gdb调试"></a>4.2.2 gdb调试</h4><p>GDB还支持：<strong>单步跟踪程序、检查内存变量、设置断点等</strong>。在<strong>gdb</strong>环境中：</p>
+<h4 id="4-2-2-gdb调试">4.2.2 gdb调试</h4>
+<p>GDB还支持：<strong>单步跟踪程序、检查内存变量、设置断点等</strong>。在<strong>gdb</strong>环境中：</p>
 <p><strong>单步跟踪</strong>：</p>
 <ul>
 <li><code>break n</code>，在<strong>第n行</strong>设置断点。<code>break 函数名</code>，进入<strong>指定函数时停止</strong>。<code>break ... if 条件</code>，符合条件且运行到指定位置停止。</li>
@@ -564,21 +588,34 @@
 </ul>
 <p><strong>检查内存变量</strong>：</p>
 <ul>
-<li><p><code>print 变量/表达式</code>，可以使用该指令<strong>输出变量/表达式值</strong>。</p>
+<li>
+<p><code>print 变量/表达式</code>，可以使用该指令<strong>输出变量/表达式值</strong>。</p>
 </li>
-<li><p><code>print $</code>，表示给定序号的前一个序号，$$<code>表示这是第几次使用print指令。还有</code>print $$$。</p>
+<li>
+<p><code>print $</code>，表示给定序号的前一个序号，<code>$</code>表示这是第几次使用print指令。还有<code>print $$</code>。</p>
 </li>
-<li><code>print vari=value</code>，<strong>print指令还可以给变量赋值</strong>。</li>
-<li><code>print 开始表达式@连续空间大小</code>，用于打印连续空间的内容，例如，<code>print array[3]@2</code>，打印从数组4开始的两个内容。</li>
-<li><code>display</code>，与<code>print</code>不同的是，<strong>每当运行到断点处时，都会显示表达式的值</strong>，适合在循环中观察变量的值。</li>
-<li><p><code>disable display 序号, enable display 序号, delete display 序号，undisplay 序号</code>，<strong>使能/失能、取消、取消显示</strong>。</p>
+<li>
+<p><code>print vari=value</code>，<strong>print指令还可以给变量赋值</strong>。</p>
 </li>
-<li><p><code>whatis，ptype</code>，<strong>whatis只显示数据类型，而ptype还可以给出类型的定义</strong>。</p>
+<li>
+<p><code>print 开始表达式@连续空间大小</code>，用于打印连续空间的内容，例如，<code>print array[3]@2</code>，打印从数组4开始的两个内容。</p>
 </li>
-<li><code>set</code>，<strong>可用于修改大循环变量为需要的值</strong>，例如，<code>set variable i=4</code>。</li>
-<li><code>x/&lt;n/f/u&gt; &lt;addr&gt;</code>，<strong>查看内存，n、f、u为查看命令的可选参数，addr为起始地址</strong>。</li>
+<li>
+<p><code>display</code>，与<code>print</code>不同的是，<strong>每当运行到断点处时，都会显示表达式的值</strong>，适合在循环中观察变量的值。</p>
+</li>
+<li>
+<p><code>disable display 序号, enable display 序号, delete display 序号，undisplay 序号</code>，<strong>使能/失能、取消、取消显示</strong>。</p>
+</li>
+<li>
+<p><code>whatis，ptype</code>，<strong>whatis只显示数据类型，而ptype还可以给出类型的定义</strong>。</p>
+</li>
+<li>
+<p><code>set</code>，<strong>可用于修改大循环变量为需要的值</strong>，例如，<code>set variable i=4</code>。</p>
+</li>
+<li>
+<p><code>x/&lt;n/f/u&gt; &lt;addr&gt;</code>，<strong>查看内存，n、f、u为查看命令的可选参数，addr为起始地址</strong>。</p>
+</li>
 </ul>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -601,7 +638,6 @@
 </tr>
 </tbody>
 </table>
-</div>
 <p>可以理解为：<strong>从addr地址开始以f格式显示n个u数值</strong>。</p>
 <p><strong>观察窗口</strong>：</p>
 <ul>
@@ -610,7 +646,7 @@
 <li><code>awatch</code>，<strong>当变量被读被写时，程序停止</strong>。</li>
 <li><code>info watchpoints</code>，<strong>用于列出当前所设置的所有监视点的相关信息</strong>。</li>
 </ul>
-<p><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240221154434206.png" alt="image-20240221154434206" style="zoom:80%;" /></p>
+<img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240221154434206.png" alt="image-20240221154434206" style="zoom:80%;" />
 <p>演示了：<strong>在第一行设置断点，使用next、step单步执行、观察窗口、查看变量值</strong>。</p>
 <p><strong>检查栈信息</strong>：</p>
 <p>栈是一种有限定性的线性表，<strong>当程序调用函数时，函数的地址、函数参数、函数内的局部变量都被压入栈中</strong>。</p>
@@ -621,20 +657,19 @@
 <li><code>frame n</code>，简写形式为<strong>f n</strong>，n从0开始的整数，表示栈中的层编号，<strong>显示第n层栈的信息，没有n则显示当前栈层的信息</strong>。</li>
 <li><code>up n</code>，<strong>向栈底方向移动n层，没有n，则表示移动一层，在栈中栈底位于高地址区域，因此用up，对应的有down</strong>。</li>
 </ul>
-<p><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240221161416630.png" alt="image-20240221161416630" style="zoom:80%;" /></p>
+<img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240221161416630.png" alt="image-20240221161416630" style="zoom:80%;" />
 <ul>
 <li><code>info frame</code>，简写形式<strong>info f</strong>，<strong>实现更为详细的栈层信息，例如：被调用函数地址、所使用的编程语言、函数参数地址及值、局部变量地址等</strong>。</li>
 <li><code>info args</code>，<strong>显示当前函数的参数名及值</strong>。</li>
 <li><code>info locals</code>，<strong>显示当前函数局部变量及其值</strong>。</li>
 <li><code>info catch</code>，<strong>显示当前函数中的异常处理信息</strong>。</li>
 </ul>
-<p><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240221162123334.png" alt="image-20240221162123334" style="zoom:80%;" /></p>
+<img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240221162123334.png" alt="image-20240221162123334" style="zoom:80%;" />
 <p><strong>检查源代码功能及其命令</strong>：</p>
 <p>在使用GDB工具时，通常加上<code>-g</code>参数，将源程序的信息编译到执行文件中，此外查看源代码的有：</p>
 <ul>
 <li><code>list</code>，<strong>不加任何参数表示显示当前行后面的代码</strong>。</li>
 </ul>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -677,19 +712,18 @@
 </tr>
 </tbody>
 </table>
-</div>
 <p><strong>默认情况下，list命令会一次显示10行</strong>，可通过：</p>
 <ul>
 <li><code>set listsize n</code>，<strong>n为显示的行数</strong>，该指令可设置每次显示的代码行数。</li>
 <li><code>show listsize</code>，显示当前行数显示设置。</li>
 </ul>
-<p><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240221164014828.png" alt="image-20240221164014828" style="zoom:80%;" /></p>
+<img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240221164014828.png" alt="image-20240221164014828" style="zoom:80%;" />
 <p>使用GDB调试程序时，难免需要查看某一行代码所在的内存地址等信息，故：</p>
 <ul>
 <li><code>info line</code>，<strong>用于查看程序在运行时所指定的源代码的内存地址，后跟行号或函数名</strong>。</li>
 <li><code>disassemble</code>，<strong>反汇编</strong>，查看当前执行的机器码。</li>
 </ul>
-<p><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240221165437993.png" alt="image-20240221165437993" style="zoom:80%;" /></p>
+<img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240221165437993.png" alt="image-20240221165437993" style="zoom:80%;" />
 <p><strong>改变程序的运行功能及其命令：</strong></p>
 <p>调试程序时，并不是每条语句都需要执行，可以通过跳转语句，修改变量值的方式。</p>
 <ul>
@@ -707,7 +741,6 @@
 <li><code>gcc -save-temps foo.c -o foo</code>，该指令是将编译器生成的中间结果保存，便于手工调整代码。</li>
 <li><code>-P</code>和<code>-pg</code>，该指令会将<strong>刨析信息</strong>加入到生成的二进制文件中，便于开发者开发更加高性能的程序。</li>
 </ul>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -726,15 +759,37 @@
 </tr>
 </tbody>
 </table>
-</div>
 <p>此外，虽然GCC允许优化与加入调试符号信息同时进行，但应当避免避免这种情况的出现。</p>
-<h3 id="4-3-代码优化"><a href="#4-3-代码优化" class="headerlink" title="4.3 代码优化"></a>4.3 代码优化</h3><p>GCC提供的代码优化功能比较强大：</p>
+<h3 id="4-3-代码优化">4.3 代码优化</h3>
+<p>GCC提供的代码优化功能比较强大：</p>
 <ul>
-<li><p><code>-On</code>，来控制优化代码的生成，其中n代表优化级别，典型值：0 2 3。</p>
-<p>| 代号 |                            含义                            |<br>| :—: | :————————————————————————————: |<br>|  1   | 减少代码的长度和执行时间，一般包含<strong>线程跳转和延迟退栈</strong>。 |<br>|  2   |         在1的基础上，完成如<strong>处理器指令调度</strong>等。          |<br>|  3   |            在前者的基础上，完成<strong>循环展开</strong>等。            |</p>
+<li>
+<p><code>-On</code>，来控制优化代码的生成，其中n代表优化级别，典型值：0 2 3。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">代号</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">减少代码的长度和执行时间，一般包含<strong>线程跳转和延迟退栈</strong>。</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">在1的基础上，完成如<strong>处理器指令调度</strong>等。</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">在前者的基础上，完成<strong>循环展开</strong>等。</td>
+</tr>
+</tbody>
+</table>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">double</span> counter;</span><br><span class="line">    <span class="type">double</span> result;</span><br><span class="line">    <span class="type">double</span> temp;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(counter=<span class="number">0</span>;counter&lt;<span class="number">2000.0</span>*<span class="number">2000.0</span>*<span class="number">2000.0</span>/<span class="number">20.0</span>+<span class="number">2022</span>;counter+=(<span class="number">5</span><span class="number">-1</span>)/<span class="number">4</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        temp=counter/<span class="number">1979</span>;</span><br><span class="line">        result=counter;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Result is %lf\n&quot;</span>,result);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>则通过系统<code>time</code>指令查询运行时间，有：</p>
-<p><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240220173456652.png" alt="image-20240220173456652" style="zoom:80%;" /></p>
+<img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/LniuxC/image-20240220173456652.png" alt="image-20240220173456652" style="zoom:80%;" />
 </li>
 </ul>
 <p>但是也要注意优化带来的一些弊端：</p>
@@ -743,42 +798,7 @@
 <li>优化会增加可执行文件的体积，特别是<strong>能够申请到的内存有限时</strong>，例如嵌入式设备中。</li>
 <li>跟踪调试时，优化代码，会导致跟踪和调试变难。</li>
 </ul>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://lancit.top">lancit</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://lancit.top">https://lancit.top</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">此文章版权归lancit所有，如有转载，请注明来自原作者。</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/linuxC/">linuxC</a></div><div class="post_share"><div class="social-share" data-image="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/linuxc1.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/04/20/hello-hexo/" title="hello-hexo"><img class="cover" src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/hexo.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">hello-hexo</div></div></a></div><div class="next-post pull-right"><a href="/2024/05/03/LinuxC%20%E6%8F%90%E9%AB%98%E7%AF%87/" title="LinuxC 提高篇"><img class="cover" src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/linuxc2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">LinuxC 提高篇</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/05/03/LinuxC%20%E6%8F%90%E9%AB%98%E7%AF%87/" title="LinuxC 提高篇"><img class="cover" src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/linuxc2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-03</div><div class="title">LinuxC 提高篇</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/theme_img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">lancit</div><div class="author-info__description">车马很慢，阳光很暖。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/lancitx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/lancitx" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ukio169@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">天道酬勤，欢迎志同道合的友友~ <img style="max-width:100%;overflow:hidden;" src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/an_img/sunny.gif" alt=""></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux-C"><span class="toc-text">Linux C</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80"><span class="toc-text">1. C语言基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">1.1 数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-1-%E6%95%B4%E5%9E%8B%E3%80%81%E5%AE%9E%E5%9E%8B%E3%80%81%E5%AD%97%E7%AC%A6%E5%9E%8B"><span class="toc-text">1.1.1 整型、实型、字符型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-2-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B"><span class="toc-text">1.1.2 枚举类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-3-%E6%9E%84%E9%80%A0%E7%B1%BB%E5%9E%8B"><span class="toc-text">1.1.3 构造类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-4-%E6%8C%87%E9%92%88%E7%B1%BB%E5%9E%8B"><span class="toc-text">1.1.4 指针类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">1.2 运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E9%A2%84%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4"><span class="toc-text">1.3 预处理命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-text">2. 内存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%86%85%E5%AD%98%E6%93%8D%E4%BD%9C"><span class="toc-text">2.1 内存操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-%E6%A0%88%E5%92%8C%E5%A0%86"><span class="toc-text">2.1.1 栈和堆</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-%E5%88%86%E9%85%8D%E5%92%8C%E9%87%8A%E6%94%BE%E5%86%85%E5%AD%98"><span class="toc-text">2.1.2 分配和释放内存</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E9%93%BE%E8%A1%A8"><span class="toc-text">2.2 链表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Vim%E5%92%8CEmacs"><span class="toc-text">3. Vim和Emacs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-VIM"><span class="toc-text">3.1 VIM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Emacs"><span class="toc-text">3.2 Emacs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-GCC%E7%BC%96%E8%AF%91%E5%99%A8"><span class="toc-text">4. GCC编译器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-GCC%E6%8C%87%E4%BB%A4"><span class="toc-text">4.1 GCC指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-GDB%E8%B0%83%E8%AF%95"><span class="toc-text">4.2 GDB调试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-1-gdb%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text">4.2.1 gdb预处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-2-gdb%E8%B0%83%E8%AF%95"><span class="toc-text">4.2.2 gdb调试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96"><span class="toc-text">4.3 代码优化</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/06/16/%E3%80%8A%E7%8E%AB%E7%91%B0%E7%9A%84%E6%95%85%E4%BA%8B%E3%80%8B/" title="《玫瑰的故事》"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/LitN/rose.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《玫瑰的故事》"/></a><div class="content"><a class="title" href="/2024/06/16/%E3%80%8A%E7%8E%AB%E7%91%B0%E7%9A%84%E6%95%85%E4%BA%8B%E3%80%8B/" title="《玫瑰的故事》">《玫瑰的故事》</a><time datetime="2024-06-16T11:21:31.000Z" title="发表于 2024-06-16 19:21:31">2024-06-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/05/30/ROS%E6%8F%90%E9%AB%98%E7%AF%87/" title="ROS提高篇"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/ros1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ROS提高篇"/></a><div class="content"><a class="title" href="/2024/05/30/ROS%E6%8F%90%E9%AB%98%E7%AF%87/" title="ROS提高篇">ROS提高篇</a><time datetime="2024-05-30T12:28:02.000Z" title="发表于 2024-05-30 20:28:02">2024-05-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/05/28/PurePursuit%E7%AE%97%E6%B3%95/" title="PurePursuit算法"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/pursuit.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PurePursuit算法"/></a><div class="content"><a class="title" href="/2024/05/28/PurePursuit%E7%AE%97%E6%B3%95/" title="PurePursuit算法">PurePursuit算法</a><time datetime="2024-05-28T06:36:32.000Z" title="发表于 2024-05-28 14:36:32">2024-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/05/18/ROS%E5%9F%BA%E7%A1%80%E7%AF%87/" title="ROS基础篇"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/ros.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ROS基础篇"/></a><div class="content"><a class="title" href="/2024/05/18/ROS%E5%9F%BA%E7%A1%80%E7%AF%87/" title="ROS基础篇">ROS基础篇</a><time datetime="2024-05-18T07:33:14.000Z" title="发表于 2024-05-18 15:33:14">2024-05-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/05/08/Kalman%E6%BB%A4%E6%B3%A2%E8%AF%A6%E8%A7%A3/" title="Kalman滤波详解"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/kalman.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Kalman滤波详解"/></a><div class="content"><a class="title" href="/2024/05/08/Kalman%E6%BB%A4%E6%B3%A2%E8%AF%A6%E8%A7%A3/" title="Kalman滤波详解">Kalman滤波详解</a><time datetime="2024-05-08T14:42:49.000Z" title="发表于 2024-05-08 22:42:49">2024-05-08</time></div></div></div></div></div></div></main><footer id="footer" style="background: #87CEFA"><div id="footer-wrap"><div class="copyright">&copy;2024 By lancit</div><div class="footer_custom_text">书山有路勤为径，学海无涯苦作舟。</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
-  window.MathJax = {
-    tex: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']],
-      tags: 'ams'
-    },
-    chtml: {
-      scale: 1.1
-    },
-    options: {
-      renderActions: {
-        findScript: [10, doc => {
-          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
-            const display = !!node.type.match(/; *mode=display/)
-            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
-            const text = document.createTextNode('')
-            node.parentNode.replaceChild(text, node)
-            math.start = {node: text, delim: '', n: 0}
-            math.end = {node: text, delim: '', n: 0}
-            doc.math.push(math)
-          }
-        }, '']
-      }
-    }
-  }
-  
-  const script = document.createElement('script')
-  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
-  script.id = 'MathJax-script'
-  script.async = true
-  document.head.appendChild(script)
-} else {
-  MathJax.startup.document.state(0)
-  MathJax.texReset()
-  MathJax.typesetPromise()
-}</script><script>(() => {
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://lancit.top">lancit</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://lancit.top">https://lancit.top</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">此文章版权归lancit所有，如有转载，请注明来自原作者。</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/linuxC/">linuxC</a></div><div class="post_share"><div class="social-share" data-image="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/linuxc1.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/04/20/hello-hexo/" title="hello-hexo"><img class="cover" src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/hexo.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">hello-hexo</div></div></a></div><div class="next-post pull-right"><a href="/2024/05/03/LinuxC%20%E6%8F%90%E9%AB%98%E7%AF%87/" title="LinuxC 提高篇"><img class="cover" src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/linuxc2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">LinuxC 提高篇</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/05/03/LinuxC%20%E6%8F%90%E9%AB%98%E7%AF%87/" title="LinuxC 提高篇"><img class="cover" src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/linuxc2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-03</div><div class="title">LinuxC 提高篇</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/theme_img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">lancit</div><div class="author-info__description">车马很慢，阳光很暖。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/lancitx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/lancitx" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ukio169@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">天道酬勤，欢迎志同道合的友友~ <img style="max-width:100%;overflow:hidden;" src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/an_img/sunny.gif" alt=""></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">Linux C</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80"><span class="toc-text">1. C语言基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">1.1 数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-1-%E6%95%B4%E5%9E%8B%E3%80%81%E5%AE%9E%E5%9E%8B%E3%80%81%E5%AD%97%E7%AC%A6%E5%9E%8B"><span class="toc-text">1.1.1 整型、实型、字符型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-2-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B"><span class="toc-text">1.1.2 枚举类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-3-%E6%9E%84%E9%80%A0%E7%B1%BB%E5%9E%8B"><span class="toc-text">1.1.3 构造类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-4-%E6%8C%87%E9%92%88%E7%B1%BB%E5%9E%8B"><span class="toc-text">1.1.4 指针类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">1.2 运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E9%A2%84%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4"><span class="toc-text">1.3 预处理命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-text">2. 内存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%86%85%E5%AD%98%E6%93%8D%E4%BD%9C"><span class="toc-text">2.1 内存操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-%E6%A0%88%E5%92%8C%E5%A0%86"><span class="toc-text">2.1.1 栈和堆</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-%E5%88%86%E9%85%8D%E5%92%8C%E9%87%8A%E6%94%BE%E5%86%85%E5%AD%98"><span class="toc-text">2.1.2 分配和释放内存</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E9%93%BE%E8%A1%A8"><span class="toc-text">2.2 链表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Vim%E5%92%8CEmacs"><span class="toc-text">3. Vim和Emacs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-VIM"><span class="toc-text">3.1 VIM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Emacs"><span class="toc-text">3.2 Emacs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-GCC%E7%BC%96%E8%AF%91%E5%99%A8"><span class="toc-text">4. GCC编译器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-GCC%E6%8C%87%E4%BB%A4"><span class="toc-text">4.1 GCC指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-GDB%E8%B0%83%E8%AF%95"><span class="toc-text">4.2 GDB调试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-1-gdb%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text">4.2.1 gdb预处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-2-gdb%E8%B0%83%E8%AF%95"><span class="toc-text">4.2.2 gdb调试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96"><span class="toc-text">4.3 代码优化</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/06/20/%E5%9F%BA%E4%BA%8EPCB%E7%9A%84%E8%AE%A1%E9%87%8F%E6%AF%94%E4%BE%8B%E6%BB%91%E5%8A%A8%E6%9D%A1%E8%AE%BE%E8%AE%A1/" title="基于PCB的计量比例滑动条设计"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/slider.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基于PCB的计量比例滑动条设计"/></a><div class="content"><a class="title" href="/2024/06/20/%E5%9F%BA%E4%BA%8EPCB%E7%9A%84%E8%AE%A1%E9%87%8F%E6%AF%94%E4%BE%8B%E6%BB%91%E5%8A%A8%E6%9D%A1%E8%AE%BE%E8%AE%A1/" title="基于PCB的计量比例滑动条设计">基于PCB的计量比例滑动条设计</a><time datetime="2024-06-20T14:39:07.000Z" title="发表于 2024-06-20 22:39:07">2024-06-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/16/%E3%80%8A%E7%8E%AB%E7%91%B0%E7%9A%84%E6%95%85%E4%BA%8B%E3%80%8B/" title="《玫瑰的故事》"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/LitN/rose.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《玫瑰的故事》"/></a><div class="content"><a class="title" href="/2024/06/16/%E3%80%8A%E7%8E%AB%E7%91%B0%E7%9A%84%E6%95%85%E4%BA%8B%E3%80%8B/" title="《玫瑰的故事》">《玫瑰的故事》</a><time datetime="2024-06-16T11:21:31.000Z" title="发表于 2024-06-16 19:21:31">2024-06-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/05/30/ROS%E6%8F%90%E9%AB%98%E7%AF%87/" title="ROS提高篇"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/ros1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ROS提高篇"/></a><div class="content"><a class="title" href="/2024/05/30/ROS%E6%8F%90%E9%AB%98%E7%AF%87/" title="ROS提高篇">ROS提高篇</a><time datetime="2024-05-30T12:28:02.000Z" title="发表于 2024-05-30 20:28:02">2024-05-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/05/28/PurePursuit%E7%AE%97%E6%B3%95/" title="PurePursuit算法"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/pursuit.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PurePursuit算法"/></a><div class="content"><a class="title" href="/2024/05/28/PurePursuit%E7%AE%97%E6%B3%95/" title="PurePursuit算法">PurePursuit算法</a><time datetime="2024-05-28T06:36:32.000Z" title="发表于 2024-05-28 14:36:32">2024-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/05/18/ROS%E5%9F%BA%E7%A1%80%E7%AF%87/" title="ROS基础篇"><img src="http://lancit.oss-cn-hangzhou.aliyuncs.com/img/blog/cover/ros.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ROS基础篇"/></a><div class="content"><a class="title" href="/2024/05/18/ROS%E5%9F%BA%E7%A1%80%E7%AF%87/" title="ROS基础篇">ROS基础篇</a><time datetime="2024-05-18T07:33:14.000Z" title="发表于 2024-05-18 15:33:14">2024-05-18</time></div></div></div></div></div></div></main><footer id="footer" style="background: #87CEFA"><div id="footer-wrap"><div class="copyright">&copy;2024 By lancit</div><div class="footer_custom_text">书山有路勤为径，学海无涯苦作舟。</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
   const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
   if ($mermaid.length === 0) return
   const runMermaid = () => {
